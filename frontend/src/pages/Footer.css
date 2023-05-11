@@ -1,0 +1,17 @@
+.Footer {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  height: calc(var(--bar-height)* 1.5);
+  background-color: rgb(32, 32, 32);
+  color: rgb(167, 167, 167);
+  font-size: 12px;
+}
+
+.Footer > p {
+  line-height: 0;
+  font-style: italic;
+}

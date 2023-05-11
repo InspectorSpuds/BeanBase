@@ -1,0 +1,60 @@
+.Navbar {
+  display: flex;
+  position:fixed;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: var(--bar-height);
+  background-color: rgb(32, 32, 32);
+  top: 0;
+}
+
+
+Link, a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.NavbarLeft, .NavbarRight {
+  display: inline-flex;
+}
+
+.NavbarLeft > a >  div, .NavbarRight > a > div {
+  padding-left: 7px;
+  padding-right: 7px;
+  height: inherit;
+  color: white;
+  line-height: var(--bar-height);
+  text-align: center;
+  user-select: none;
+}
+
+.NavbarLeft > a > div:hover, .NavbarRight > a >  div:hover {
+  transition-duration: 0.1s;
+  background-color: rgb(84, 84, 84);
+}
+
+.NavbarLeft > a > div:active, .NavbarRight > a >  div:active {
+  transition-duration: 0.1s;
+  background-color: rgb(44, 44, 44);
+}
+
+#LoginButton {
+  text-decoration: none;
+  height: calc(var(--bar-height) - 7px);
+  line-height: calc(var(--bar-height) - 7px);
+  border-radius: 7%;
+  background-color: grey;
+  margin-top:   3.5px;
+  margin-right: 7px;
+  padding-left: 10px;
+  padding-right:10px;
+}
+
+#LoginButton:hover {
+  background-color: rgb(84, 84, 84);
+}
+
+#LoginButton:active {
+  background-color: rgb(44, 44, 44);
+}
