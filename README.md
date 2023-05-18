@@ -14,3 +14,9 @@ run: git clone https://github.com/InspectorSpuds/CoffeeReviews.git if you wish t
 # Run: 
 ## Testing: 
   To test functionality locally, just run npm start in the frontend, and node index.js in the backend
+
+# Functionality:
+  This project supports features such as:
+  - Secure user login (to allow several chosen users to create posts)
+  - Post creation
+  - Graph/display tools: to display coffee taste profiles in a more standard fashion
