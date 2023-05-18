@@ -8,4 +8,9 @@ This project primarily uses npm
 - ExpressJS
 - MySQL (if you intend to create your own database to attach or test with
 
-# Run:
+## Clone: 
+run: git clone https://github.com/InspectorSpuds/CoffeeReviews.git if you wish to download htis project locally
+
+# Run: 
+## Testing: 
+  To test functionality locally, just run npm start in the frontend, and node index.js in the backend
