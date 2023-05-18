@@ -2,7 +2,7 @@
 A Personal project intended on creating a fullstack blog site for reviewing various coffee beans I come across
 
 # Installation:
-##Dependencies: 
+## Dependencies: 
 This project primarily uses npm
 -ReactJS
 -ExpressJS
