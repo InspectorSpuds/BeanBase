@@ -30,7 +30,9 @@ function Login() {
   const alterUsername = (event) => setData(event, setUsername);
   const alterPassword = (event) => setData(event, setPassword);
 
-  
+  //preconditions: form fields must be validly handled and event must be a valid submit event
+  //process: validates fields and creates user in db if successful
+  //postconditions: db will be updated with new user and user will be logged into system 
   const processNewUser = (e) => {
     e.preventDefault();
 
@@ -38,6 +40,8 @@ function Login() {
 
     navigate('/');
   };
+
+  //just navigates user to create account page, nothing special
   const redirectToCreate = () => {navigate('/CreateAccount')}
 
   return (
@@ -57,7 +61,7 @@ function Login() {
             </div>
             <div className={"LoginActions"}>
               <input type="submit" value={"Login"} />
-              <input type="button" value={"Create Account"} onClick={redirectToCreate}/>
+              <input type="button" value={"Create Account"} onClick={redirectToCreate} style={{backgroundColor: "orange"}}/>
             </div>
           </form>
         </div>

@@ -1,0 +1,9 @@
+.Main {
+  padding-top: 30px;
+  height:calc(100vh - var(--bar-height) );
+  display: flex;
+  gap: none;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
