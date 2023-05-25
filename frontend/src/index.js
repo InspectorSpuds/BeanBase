@@ -6,8 +6,9 @@ import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 //pages
 import Home from './pages/Home'
 import Login from './pages/Login'
+import PostViewer from './pages/PostViewer'
 
-//page routes
+//routes
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,11 +19,23 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/Posts",
+    element: <p>404 not found, no postID passed</p>
+  },
+  {
+    path: "/Posts/:id",
+    element: <PostViewer></PostViewer>,
+  },
+  {
     path: "/CreateAccount",
     element: <p> not here yet : (</p>
   },
   {
-    path: "/Search",
+    path: "/Search/",
+    element: <p> not here yet : (</p>
+  }, 
+  {
+    path: "/Search/:search-term",
     element: <p> not here yet : (</p>
   }
 ])
@@ -30,8 +43,6 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  //<React.StrictMode>
-    <RouterProvider router={router} />
-  //</React.StrictMode>
+  <RouterProvider router={router} />
 );
 

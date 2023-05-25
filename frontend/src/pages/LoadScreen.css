@@ -1,0 +1,38 @@
+.LoadSpinner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.LoadSpinner h4 {
+  color: white;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.LoadSpinner img{
+  height: auto;
+  max-height: 25%;
+  width: auto;
+  animation: rotation 2s infinite linear;
+  max-width: 25%;
+}
+
+
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

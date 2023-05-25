@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 function PostCard(props) {
   const CHAR_LIMIT = 200;
   const POST_INFO = props;
-  const DATE = POST_INFO.date;
+  const DATE =   POST_INFO.date;
   const FILLER = POST_INFO.filler.length > CHAR_LIMIT ? POST_INFO.filler.slice(CHAR_LIMIT)  : POST_INFO.filler;
-  const TITLE = POST_INFO.title;
+  const TITLE =  POST_INFO.title;
   const POSTID = POST_INFO.route;
 
   return (
@@ -23,7 +23,7 @@ function PostCard(props) {
           </div>
           <div className={"PostCardDescr"}>
             <div>{FILLER}</div>
-            <Link to={`/Post?${POSTID}`} id={"LoginButton"}> Read More....</Link>
+            <Link to={`/Post/${POSTID}`} id={"LoginButton"}> Read More....</Link>
           </div>
         </div>
       </div>

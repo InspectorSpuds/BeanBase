@@ -19,12 +19,13 @@ function Home() {
 
   },[])
 
-  //<PostCard date={'4/10/22'} title={'Testing Testing...'} filler={"Lorem ipsum..."}/>
   return (
     <div>
       <Navbar/>
       <div className={"Main"}>
-        {}
+        {postList.map( postobj => {
+          return <PostCard date={'4/10/22'} title={'Testing Testing...'} filler={"Lorem ipsum..."}/>
+        })}
         <Footer/>
       </div>
     </div>
