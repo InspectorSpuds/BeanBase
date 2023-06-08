@@ -23,7 +23,7 @@ function PostCard(props) {
           </div>
           <div className={"PostCardDescr"}>
             <div>{FILLER}</div>
-            <Link to={`/Post/${POSTID}`} id={"LoginButton"}> Read More....</Link>
+            <Link to={`/Posts/${POSTID}`} id={"LoginButton"}> Read More....</Link>
           </div>
         </div>
       </div>

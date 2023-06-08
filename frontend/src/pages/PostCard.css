@@ -8,7 +8,6 @@
 }
 
 .CardBorder {
-  border: solid gray;
   border-radius: 15px;
   height: 300px;
   width: 75%;
@@ -18,6 +17,9 @@
 }
 
 .CardContent {
+  background-color: red;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   width: 100%;
   height: 100%;
   display: flex;

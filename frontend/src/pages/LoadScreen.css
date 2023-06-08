@@ -20,12 +20,11 @@
 
 .LoadSpinner img{
   height: auto;
-  max-height: 25%;
+  max-height: 15%;
   width: auto;
   animation: rotation 2s infinite linear;
-  max-width: 25%;
+  max-width: 15%;
 }
-
 
 
 @keyframes rotation {

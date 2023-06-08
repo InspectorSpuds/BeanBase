@@ -1,5 +1,5 @@
 import './PostViewer.css'
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect} from 'react';
 import { useParams } from 'react-router';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -12,7 +12,6 @@ function PostViewer() {
   useEffect(() => {
     setTimeout(() => {setPost(post => "")}, 2000);
   }, [id, post, setPost]);
-
 
   if(post === null) 
     return ((<LoadScreen></LoadScreen>))

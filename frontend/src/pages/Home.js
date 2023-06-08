@@ -6,7 +6,7 @@ import PostCard from './PostCard';
 
 function Home() {
   //list of post objects to render on page
-  const [postList, setPosts] = useState([]);
+  const [postList, setPosts] = useState([""]);
 
 
   //on start, populate the page with
