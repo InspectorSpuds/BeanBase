@@ -11,7 +11,7 @@ function PostCard(props) {
   const DATE =   POST_INFO.date;
   const FILLER = POST_INFO.filler.length > CHAR_LIMIT ? POST_INFO.filler.slice(CHAR_LIMIT)  : POST_INFO.filler;
   const TITLE =  POST_INFO.title;
-  const POSTID = POST_INFO.route;
+  const POSTID = POST_INFO.id;
 
   return (
     <div className={"CardWrapper"}>

@@ -23,12 +23,12 @@ router.get("/getAll", async (req, res) => {
 })
 
 //careful with this one, make sure necessary security measures are taken
-router.delete("/del", async (req, res) => {
-  if(req.body.PID === undefined || isNaN(req.body.PID)) {
-    res.status("404")
-    res.json({message: "no post id passed"})
-  } else reqWrapper(global.dbHelper.deletePost(), {status: 404, message: "Post not found"});
-})
+//router.delete("/del", async (req, res) => {
+//  if(req.body.PID === undefined || isNaN(req.body.PID)) {
+//    res.status("404")
+//    res.json({message: "no post id passed"})
+//  } else reqWrapper(global.dbHelper.deletePost(), {status: 404, message: "Post not found"});
+//})
 
 async function reqWrapper(command, errorResponse={status:404, message: "Resource not found"}){
   try{

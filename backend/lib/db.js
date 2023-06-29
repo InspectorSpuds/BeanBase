@@ -54,9 +54,8 @@ class DBHandler {
     //create a promise to create the query
     return new Promise((resolve, reject) => {
       this.#dbConnection.query(`use CoffeeReviews; 
-                                SELECT Title, CreationDate, Content, r.name from Posts p , Coffee c, Reviewer r 
-                                                                           where p.PID = ${PID}
-                                                                                r.ReviewerID = p.ReviewerID 
+                                SELECT Title, CreationDate, Content, r.name from Posts p , Coffee c
+                                                                           where p.PID = ${PID} 
                                                                                     and c.CID = p.CID;)`, (err, result, fields) => {
         if(err) reject(new DBInitError("Error in Query: Post not found"));
         resolve(result);
@@ -107,7 +106,7 @@ class DBHandler {
     const SQL_STATEMENT = `use CoffeeReviews;
                            START TRANSACTION;
                            INSERT INTO Coffee Values(\'${CID}\', \'${Roaster}\', \'${OriginCountry}\');
-                           INSERT INTO Posts Values(\'${PID}\',\'${title}\',\'${date}\',\'${content}\',\'${ReviewerID}\',\'${CID}\');
+                           INSERT INTO Posts Values(\'${PID}\',\'${title}\',\'${date}\',\'${content}\',\'${CID}\');
                            INSERT INTO TasteProfile Values(\'${CID}\',
                                                            \'${TasteProfile.Finish}\',
                                                            \'${TasteProfile.Sweet}\',

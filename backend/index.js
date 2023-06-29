@@ -10,7 +10,7 @@ const PORT = 4000
 
 //routes
 const Posts = require('./routes/Posts.js')
-const Users = require('./routes/User.js')
+//const Users = require('./routes/User.js')
 
 
 //create db connection object and try to connect first and see if that works
@@ -42,4 +42,4 @@ app.use(function(req, res, next) {
 
 //routes--------
 app.use("/Posts", Posts)
-app.use("/User", Users)
+//app.use("/User", Users)
