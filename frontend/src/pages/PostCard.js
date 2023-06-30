@@ -1,5 +1,6 @@
 import './PostCard.css';
 import { Link } from 'react-router-dom';
+import React from "react";
 
 //Preconditions: a valid PostInfo object consisting of:
 // -Date Posted
@@ -22,7 +23,7 @@ function PostCard(props) {
             <div className={"PostCardDate"}>{DATE}</div>
           </div>
           <div className={"PostCardDescr"}>
-            <div>{FILLER}</div>
+            <div dangerouslySetInnerHTML={{__html: FILLER}}/>
             <Link to={`/Posts/${POSTID}`} id={"LoginButton"}> Read More....</Link>
           </div>
         </div>

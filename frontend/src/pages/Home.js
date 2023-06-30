@@ -4,6 +4,7 @@ import Footer from './Footer'
 import { useEffect, useState } from 'react';
 import PostCard from './PostCard';
 import RequestSender from '../api/RequestSender';
+import React from "react";
 
 class PostObject {
   constructor(title, date, filler, id) {
@@ -24,7 +25,7 @@ function Home() {
     //make request to backend for post list
     const sender = new RequestSender();
 
-    //get info 
+    //get and wait for info 
     sender.getAllPosts()
       .then(response => {
         //refresh posts hook and then populate it
@@ -38,7 +39,7 @@ function Home() {
                                                   currentPost.PID)])
         }
       })
-      .catch(error => alert("Error getting posts, please refresh page and try again"))
+      .catch(error => alert(error.message))
 
   },[])
 

@@ -1,4 +1,5 @@
 import './LoadScreen.css'
+import React from "react";
 
 function LoadScreen() {
   return (

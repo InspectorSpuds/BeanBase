@@ -53,11 +53,9 @@ class DBHandler {
   async getPost(PID) {
     //create a promise to create the query
     return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`use CoffeeReviews; 
-                                SELECT Title, CreationDate, Content, r.name from Posts p , Coffee c
-                                                                           where p.PID = ${PID} 
-                                                                                    and c.CID = p.CID;)`, (err, result, fields) => {
-        if(err) reject(new DBInitError("Error in Query: Post not found"));
+      console.log(`SELECT * from CoffeeReviews.Posts where PID=\'${PID}\'`)
+      this.#dbConnection.query(`SELECT * from CoffeeReviews.TasteProfile NATURAL JOIN CoffeeReviews.Coffee NATURAL JOIN CoffeeReviews.Posts`, (err, result, fields) => {
+        if(err) reject(new DBInitError(err.message));
         resolve(result);
       })
     })
@@ -80,9 +78,10 @@ class DBHandler {
   //ERROR RESPONSE: DBInitError promise reject if something goes wrong
   async getPosts() {
     return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`SELECT * FROM CoffeeReview.Posts`, (err, result, fields) => {
+      this.#dbConnection.query(`SELECT * FROM CoffeeReviews.Posts`, (err, result, fields) => {
         if(err) reject(new DBInitError("Error getting post cards"));
         resolve(result);
+        console.log(result)
       })
     })
   }
