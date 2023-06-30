@@ -46,6 +46,8 @@ function Home() {
   return (
     <div>
       <Navbar/>
+      <h1 id={"greeter"}>Welcome!</h1>
+      <h2>Posts</h2>
       <div className={"Main"}>
         {postList.map( postobj => {
           return <PostCard date={postobj.date} title={postobj.title} filler={postobj.filler} id={postobj.id} />
