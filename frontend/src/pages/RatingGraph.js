@@ -13,7 +13,6 @@ import {
 
 function RatingGraph(props) {
 
-
   return (
     <div id={"Graph"}>
       <RadarChart
