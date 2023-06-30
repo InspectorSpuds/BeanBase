@@ -19,13 +19,29 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/Posts",
+    element: <Home />,
+  },
+  {
     path: "/Posts/:id",
     element: <PostViewer></PostViewer>,
+  },
+  {
+    path: "/CreatePost",
+    element: <p> not here yet : (</p>,
+  },
+  {
+    path: "/ManagePost",
+    element: <p> not here yet : (</p>,
   },
   {
     path: "/CreateAccount",
     element: <p> not here yet : (</p>
   },
+  {
+    path: "/CreatePost",
+    element: <p> not here yet : (</p>
+  }
   /*{
     path: "/Search/",
     element: <p> not here yet : (</p>
