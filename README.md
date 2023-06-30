@@ -3,10 +3,14 @@ A Personal project intended on creating a fullstack blog site for reviewing vari
 
 # Installation:
 ## Dependencies: 
-This project primarily uses npm
+This project primarily uses npm to manage dependencies
 - ReactJS
+  - rechart: (for rating graphs)
+  - axios: (simple HTTP requests)
 - ExpressJS
-- MySQL (if you intend to create your own database to attach or test with
+  - dotenv
+  - 
+- MySQL (if you intend to create your own database to attach or test with)
 
 ## Clone: 
 run: `git clone https://github.com/InspectorSpuds/CoffeeReviews.git` if you wish to download htis project locally

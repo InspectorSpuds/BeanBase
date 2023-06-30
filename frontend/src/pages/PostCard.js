@@ -9,7 +9,7 @@ import React from "react";
 function PostCard(props) {
   const CHAR_LIMIT = 200;
   const POST_INFO = props;
-  const DATE =   POST_INFO.date;
+  const DATE =   new Date(POST_INFO.date).toLocaleDateString();
   const FILLER = POST_INFO.filler.length > CHAR_LIMIT ? POST_INFO.filler.slice(CHAR_LIMIT)  : POST_INFO.filler;
   const TITLE =  POST_INFO.title;
   const POSTID = POST_INFO.id;
