@@ -1,0 +1,102 @@
+.RootLayout {
+  height:100vh;
+  overflow-y: auto;
+  color: black;
+}
+
+.ScrollableWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  width: 100%;
+  height: calc(100% - var(--bar-height));
+}
+
+.LoginWrapper {
+  background-color: rgb(44, 46, 46);
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LoginBox {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 25px;
+  border-radius: 30px;
+  width: 30%;
+  height:45%;
+  background-color: grey;
+}
+
+.LoginBox > label {
+  font-weight: 900;
+  font-size: 60px;
+  font-style: italic;
+}
+
+.LoginBox > button {
+  width: 15%;
+}
+
+.LoginFields {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 30px;
+}
+
+.LoginRow > label {
+  font-weight: 900;
+  font-size: 19px;
+  font-style: italic;
+}
+
+.LoginRow > input[type=text] {
+  transition-duration: 0.1s;
+  box-sizing: border-box;
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: inherit;
+  border-bottom: 2px solid black;
+}
+
+.LoginRow > input[type=text]:focus {
+  transition-duration: 0.1s;
+  color: black;
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: inherit;
+  border-bottom: 4px solid red;
+}
+
+
+.LoginActions {
+  display: flex;
+  gap:10px;
+}
+
+.LoginActions > a, .LoginActions > input {
+  background-color: rgb(207, 18, 18);
+  padding: 5px;
+  border: none;
+  color: black;
+}
+
+.LoginActions > a:hover, .LoginActions > input:hover  {
+  transition-duration: 0.1s;
+  background-color: rgb(232, 73, 5);
+}
+
+.LoginActions > a:active, .LoginActions > input:active {
+  transition-duration: 0.1s;
+  background-color: rgb(106, 33, 1);
+}
+

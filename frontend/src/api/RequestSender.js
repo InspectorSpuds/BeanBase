@@ -32,6 +32,29 @@ class RequestSender {
     })
   }
 
+  async createUser(Username, password) {
+    const URL_ROUTE = `/User/create`
+
+    return axios.post(`${this.url}${URL_ROUTE}`, {
+      Username: Username,
+      password: password
+    }) 
+  }
+
+  async loginUser(Username, password) {
+    const URL_ROUTE = `/User/login`
+
+    return axios.post(`${this.url}${URL_ROUTE}`, {
+      Username: Username,
+      password: password
+    })
+  }
+
+  async validateUserToken(token) {
+    const URL_ROUTE = `/User/login`
+
+    return axios.post(`${this.url}${URL_ROUTE}`, {token: token})
+  }
 
 }
 

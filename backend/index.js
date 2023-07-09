@@ -10,11 +10,12 @@ const PORT = 4000
 
 //routes
 const Posts = require('./routes/Posts.js')
-//const Users = require('./routes/User.js')
+const User = require('./routes/User.js')
 
 
 //create db connection object and try to connect first and see if that works
 global.dbHelper = new DBHandler(process.env.TESTORIGIN, process.env.USER, process.env.PASSWORD)
+global.secret = process.env.ACCESS_TOKEN_SECRET;
 
 app.listen(PORT, () => {
   //try to init db, on fail exit program
@@ -42,4 +43,4 @@ app.use(function(req, res, next) {
 
 //routes--------
 app.use("/Posts", Posts)
-//app.use("/User", Users)
+app.use("/User", User)

@@ -7,6 +7,7 @@ import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import Home from './pages/Home'
 import Login from './pages/Login'
 import PostViewer from './pages/PostViewer'
+import CreateUser from './pages/CreateUser';
 
 //routes
 const router = createBrowserRouter([
@@ -27,20 +28,16 @@ const router = createBrowserRouter([
     element: <PostViewer></PostViewer>,
   },
   {
-    path: "/CreatePost",
-    element: <p> not here yet : (</p>,
-  },
-  {
     path: "/ManagePost",
     element: <p> not here yet : (</p>,
   },
   {
-    path: "/CreateAccount",
-    element: <p> not here yet : (</p>
+    path: "/CreateUser",
+    element: <CreateUser></CreateUser>,
   },
   {
     path: "/CreatePost",
-    element: <p> not here yet : (</p>
+    element: <CreatePost></CreatePost>,
   }
   /*{
     path: "/Search/",

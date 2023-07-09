@@ -1,7 +1,8 @@
 import './LoadScreen.css'
 import React from "react";
 
-function LoadScreen() {
+function LoadScreen(props) {
+
   return (
     <div className={"LoadSpinner"}>
       <h4 >Loading Post...</h4>
