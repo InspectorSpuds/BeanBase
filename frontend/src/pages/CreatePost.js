@@ -37,13 +37,13 @@ function CreatePost() {
         setTokenValidity(prev => true);
       })
       .catch(error => {
-        alert("Error logging in: please rty again or logout and relogin later");
+        alert("Error logging in: please try again or logout and relogin later");
         navigate('/');
       })
 
   },[])
 
-  if(!tokenValid) return (<LoadScreen />);
+  if(!tokenValid) return (<LoadScreen ></LoadScreen>);
 
   return (
     <div>
