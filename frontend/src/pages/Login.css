@@ -74,7 +74,7 @@
   border-left: none;
   border-right: none;
   background: inherit;
-  border-bottom: 4px solid red;
+  border-bottom: 4px solid rgb(255, 255, 255);
 }
 
 
@@ -84,7 +84,7 @@
 }
 
 .LoginActions > a, .LoginActions > input {
-  background-color: rgb(207, 18, 18);
+  background-color: rgb(184, 215, 255);
   padding: 5px;
   border: none;
   color: black;
@@ -92,11 +92,11 @@
 
 .LoginActions > a:hover, .LoginActions > input:hover  {
   transition-duration: 0.1s;
-  background-color: rgb(232, 73, 5);
+  background-color: rgb(167, 193, 226);
 }
 
 .LoginActions > a:active, .LoginActions > input:active {
   transition-duration: 0.1s;
-  background-color: rgb(106, 33, 1);
+  background-color: rgb(114, 132, 156);
 }
 

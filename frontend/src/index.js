@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import PostViewer from './pages/PostViewer'
 import CreateUser from './pages/CreateUser';
+import CreatePost from './pages/CreatePost';
 
 //routes
 const router = createBrowserRouter([

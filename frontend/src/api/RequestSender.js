@@ -51,7 +51,7 @@ class RequestSender {
   }
 
   async validateUserToken(token) {
-    const URL_ROUTE = `/User/login`
+    const URL_ROUTE = `/User/validateLoginToken`
 
     return axios.post(`${this.url}${URL_ROUTE}`, {token: token})
   }

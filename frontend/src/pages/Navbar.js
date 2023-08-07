@@ -1,5 +1,5 @@
 import './Navbar.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import React, { useState } from "react";
 import Cookies from 'universal-cookie';
 
@@ -7,12 +7,15 @@ function Navbar() {
   const cookies = new Cookies();
   let login = null;
   const [token, setToken] = useState(cookies.get("session-token"));
-  
+  const navigate = useNavigate();
+
+
   //remove cookie and trigger rerender
   const removeCookie = () => {
     alert("You are now Logged out!")
     cookies.remove("session-token")
     setToken(prev => null);
+    navigate('/home')
   }
 
   //handle login button status

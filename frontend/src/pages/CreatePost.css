@@ -1,0 +1,159 @@
+.Main {
+  padding-top: 30px;
+  height:calc(100vh - var(--bar-height) );
+  display: flex;
+
+
+  flex-direction: column;
+  align-items: center;
+  vertical-align:middle;
+}
+
+h2, h1 {
+  margin: 0;
+}
+
+h2 {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+#greeter {
+  background-color: rgb(27, 99, 162);
+  color: white;
+  text-align: center;
+
+}
+
+.formDivider {
+  display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+}
+
+.postForm {
+  display: flex;
+  background-color: rgb(27, 99, 162);
+  flex-direction: column;
+  width: 90vw;
+}
+
+.Tabs {
+  background-color: grey;
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.Tabs > div {
+  text-align: center;
+  background-color: darkgrey;
+  flex: 1;
+}
+
+.Tabs > div:hover {
+  background-color: rgb(124, 255, 246);
+}
+
+.Tabs > div:active {
+  background-color: rgb(34, 156, 255);  
+}
+
+.PostRow > textarea {
+  max-width: 70vw;
+  height:80vh;
+}
+
+.Actions {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  padding: 20px;
+}
+
+.Actions > input {
+  transition-duration: 0.1ms;
+  height: 30px;
+  border: none;
+  background-color: rgb(184, 215, 255);
+  color: black;
+  font-weight: 900;
+}
+
+.Actions > input:hover {
+  transition-duration: 0.1ms;
+  background-color: rgb(167, 193, 226);
+}
+
+.Actions > input:active {
+  transition-duration: 0.1ms;
+  background-color: rgb(114, 132, 156);
+}
+
+.PostRow {
+  display: flex;
+  width: 90%;
+  gap: 10px;
+}
+
+
+.PostFields {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 30px;
+  padding: 10px;
+}
+
+
+.PostRow > label {
+  font-weight: 900;
+  font-size: 19px;
+  font-style: italic;
+}
+
+.PostRow > input[type=text] {
+  transition-duration: 0.1s;
+  box-sizing: border-box;
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: inherit;
+  border-bottom: 2px solid black;
+}
+
+.PostRow > input[type=text]:focus {
+  transition-duration: 0.1s;
+  color: black;
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: inherit;
+  border-bottom: 4px solid rgb(255, 255, 255);
+}
+
+
+.PostRow > input[type=number] {
+  transition-duration: 0.1s;
+  box-sizing: border-box;
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: inherit;
+  border-bottom: 2px solid black;
+}
+
+.PostRow > input[type=number]:focus {
+  transition-duration: 0.1s;
+  color: black;
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: inherit;
+  border-bottom: 4px solid rgb(255, 255, 255);
+}

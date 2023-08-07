@@ -5,6 +5,10 @@ const router = express.Router()
 
 //Preconditions: all post details MUST be provided
 router.post("/create", async (req, res) => {
+  let PID = crypto.randomBytes(16).toString("hex").slice(0,10);
+  let newPost = JSON.stringify()
+  reqWrapper(async () => global.dbHelper.createPost(req.params.Coffee, req.params.Post, req.params.TasteProfile, req.params.UID), 
+             res, {status: 404, message: "Unable to create post"})
 })
 
 //Precondition: pid must be a value and not undefined, NaN, etc. 

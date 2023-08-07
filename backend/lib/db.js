@@ -62,14 +62,24 @@ class DBHandler {
   }
 
   async getProfile(PID) {
-        //create a promise to create the query
-        return new Promise((resolve, reject) => {
-          this.#dbConnection.query(`use CoffeeReviews; 
-                                    SELECT * exclude PID from TasteProfile where PID = ${PID};)`, (err, result, fields) => {
-            if(err) reject(new DBInitError("Error in Query: Post not found"));
-            resolve(result);
-          })
-        })
+    //create a promise to create the query
+    return new Promise((resolve, reject) => {
+      this.#dbConnection.query(`use CoffeeReviews; 
+                                SELECT * exclude PID from TasteProfile where PID = \'${PID}\';)`, (err, result, fields) => {
+        if(err) reject(new DBInitError("Error in Query: Post not found"));
+        resolve(result);
+      })
+    })
+  }
+
+  async getUser(name) {
+    //create a promise to create the query
+    return new Promise((resolve, reject) => {
+      this.#dbConnection.query(`SELECT * from CoffeeReviews.User where Username = \'${name}\';`, (err, result, fields) => {
+        if(err) reject(new DBInitError(err.message));
+        resolve(result);
+      })
+    })
   }
 
   //preconditions: none
@@ -81,57 +91,87 @@ class DBHandler {
       this.#dbConnection.query(`SELECT * FROM CoffeeReviews.Posts`, (err, result, fields) => {
         if(err) reject(new DBInitError("Error getting post cards"));
         resolve(result);
-        console.log(result)
       })
     })
   }
 
-  async createPost(info) {
-    let PID =     info.PID;
-    let UID =     info.UID;
-    let title =   info.title;
-    let date =    info.date;
-    let content = info.content;
-    let ReviewerID = info.ReviewerID;
+  async createPost(Coffee, Post, TasteProfile, UID) {
+    //use a transaction to ensure proper rollback and atomicitiy
+    const statementList = [this.createCoffee(Coffee.CID, Coffee.Roaster, Coffee.OriginCountry, Coffee.CoffeeName),
+                           this.createTasteProfile(Post.PID, TasteProfile),
+                           this.createPost(Post, UID, Coffee.CID)]
 
+    return new Promise((resolve, reject) => {
+        this.#dbConnection.beginTransaction(async (err) => {
+          //return error if the transaction can't be initialized
+          if(err) reject(new DBInitError(err.message))
 
-    let CID = info.CID; 
-    let OriginCountry = info.OriginCountry;
-    let Roaster = info.Roaster;
+          //execute all the statements in the list, rolling back the transaction and rejeting on error
+          try {
+            for(let index = 0; index < statementList.length(); index++) {
+              let result = await statementList[index]();
+            }
+          } catch(db_error) {
+            this.#dbConnection.rollback((err) => {reject(new DBInitError(err.message))})
+            reject(new DBInitError(db_error.message))
+          }
+  
+          //finish the transaction
+          this.#dbConnection.commit((db_error) => {
+            this.#dbConnection.rollback((err) => {reject(new DBInitError(err.message))})
+            reject(new DBInitError(db_error.message))
+          })
+          
+          resolve("Post successfully created!");
+        })
+    })
+  }
 
-    let TasteProfile = info.TasteProfile;
+  async createCoffee(CID, Roaster, OriginCountry, CoffeeName) {
+    const SQL_STATEMENT = `INSERT INTO CoffeeReviews.Coffee Values(\'${CID}\', \'${Roaster}\', \'${OriginCountry}\',\'${CoffeeName}\');`
+  
+    return new Promise((resolve, reject) => {
+      this.#dbConnection.query(SQL_STATEMENT, (err, result, fields) => {
+        if(err) reject(new DBInitError(err.message));
+        resolve(true);
+      })
+    })
+  }
 
-    //sql transaction: insert rating and then book,
-    //                 reverting changes if one or more statements fail
-    const SQL_STATEMENT = `use CoffeeReviews;
-                           START TRANSACTION;
-                           INSERT INTO Coffee Values(\'${CID}\', \'${Roaster}\', \'${OriginCountry}\',\'${UID}\');
-                           INSERT INTO Posts Values(\'${PID}\',\'${title}\',\'${date}\',\'${content}\',\'${CID}\');
-                           INSERT INTO TasteProfile Values(\'${CID}\',
-                                                           \'${TasteProfile.Finish}\',
-                                                           \'${TasteProfile.Sweet}\',
-                                                           \'${TasteProfile.Acidic}\',
-                                                           \'${TasteProfile.Floral}\',                                                           
-                                                           \'${TasteProfile.Spicy}\',                           
-                                                           \'${TasteProfile.Salty}\',
-                                                           \'${TasteProfile.Berry}\',
-                                                           \'${TasteProfile.Citrus}\',
-                                                           \'${TasteProfile.Stonefruit}\',
-                                                           \'${TasteProfile.Chocolate}\',
-                                                           \'${TasteProfile.Caramel}\',
-                                                           \'${TasteProfile.Smoky}\',
-                                                           \'${TasteProfile.Bitter}\',
-                                                           \'${TasteProfile.Savory}\',
-                                                           \'${TasteProfile.Body}\',
-                                                           \'${TasteProfile.Clean}\');
-                           COMMIT;`
-
-    //insert post
+  async createTasteProfile(PID, TasteProfile) {
+    const SQL_STATEMENT = `INSERT INTO CoffeeReviews.TasteProfile Values(\'${PID}\',
+                                                           \'${TasteProfile['Finish']}\',
+                                                           \'${TasteProfile['Sweet']}\',
+                                                           \'${TasteProfile['Acidic']}\',
+                                                           \'${TasteProfile['Floral']}\',                                                           
+                                                           \'${TasteProfile['Spicy']}\',                           
+                                                           \'${TasteProfile['Salty']}\',
+                                                           \'${TasteProfile['Berry']}\',
+                                                           \'${TasteProfile['Citrus']}\',
+                                                           \'${TasteProfile['Stonefruit']}\',
+                                                           \'${TasteProfile['Chocolate']}\',
+                                                           \'${TasteProfile['Caramel']}\',
+                                                           \'${TasteProfile['Smoky']}\',
+                                                           \'${TasteProfile['Bitter']}\',
+                                                           \'${TasteProfile['Savory']}\',
+                                                           \'${TasteProfile['Body']}\',
+                                                           \'${TasteProfile['Clean']}\');`
 
     return new Promise((resolve, reject) => {
       this.#dbConnection.query(SQL_STATEMENT, (err, result, fields) => {
         if(err) reject(new DBInitError(err.message));
-        resolve("success");
+        resolve(true);
+      })
+    })
+  }
+
+  async createPost(Post, UID, CID) {
+    const SQL_STATEMENT = `INSERT INTO CoffeeReviews.Posts Values(\'${Post.PID}\',\'${Post.Title}\',\'${Post.CreationDate}\',\'${Post.Content}\',\'${CID}\',\'${UID}\');`
+
+    return new Promise((resolve, reject) => {
+      this.#dbConnection.query(SQL_STATEMENT, (err, result, fields) => {
+        if(err) reject(new DBInitError(err.message));
+        resolve(true);
       })
     })
   }

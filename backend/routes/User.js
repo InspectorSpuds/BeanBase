@@ -42,6 +42,7 @@ router.post('/login', async (req, res) => {
         res.json("Incorrect login information")
       //create a new jwt token and pass it back to the user
       } else {  
+        //console.log(req.body.Username)
         const accessToken = jwt.sign({name:req.body.Username}, global.secret)
         res.status(200)
         res.json({accessToken: accessToken})
@@ -54,12 +55,38 @@ router.post('/login', async (req, res) => {
   }
 })
 
+//Preconditions: none
+//Process: validates the token and if it is correct will return the user profile (if it exists), will return an error if any
+//Postconditions: none
 router.post('/validateLoginToken',  async (req, res) => {
   if(req.body.token === undefined) {
     res.status(404)
     res.json({message: "no session token passed, unable to autologin"})
   } else {
     const token = req.body.token;
+    
+    //verify the token authenticity
+    try  {
+      const result = jwt.verify(token, global.secret);
+      //console.log(result);
+      let userResult = null;
+
+      //get the user profile and return that back
+      try {
+        userResult = await global.dbHelper.getUser(result['name']);
+      } catch(err) {
+        console.log(err.message);
+        res.status(404)
+        res.json(err.message);
+      }
+      //console.log(userResult);
+      res.status(200)
+      res.json(userResult);
+    } catch(err) {
+      console.log(err.message);
+      res.status(404)
+      res.json(err.message);
+    }
 
   }
 })
