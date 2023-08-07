@@ -15,7 +15,7 @@ function Navbar() {
     alert("You are now Logged out!")
     cookies.remove("session-token")
     setToken(prev => null);
-    navigate('/home')
+    navigate('/')
   }
 
   //handle login button status
@@ -37,9 +37,6 @@ function Navbar() {
        <img src={require('../img/muggy-dude-export.png')} alt="My logo" />
         <Link to={"/"}>
           <div>⛾ Posts</div>
-        </Link>
-        <Link to={"/Search"}>
-          <div>🔍 Search</div>
         </Link>
         <Link to={"/CreatePost"}>
           <div>➕ Create Post</div>

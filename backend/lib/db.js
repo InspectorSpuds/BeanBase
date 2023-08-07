@@ -53,20 +53,8 @@ class DBHandler {
   async getPost(PID) {
     //create a promise to create the query
     return new Promise((resolve, reject) => {
-      console.log(`SELECT * from CoffeeReviews.Posts where PID=\'${PID}\'`)
-      this.#dbConnection.query(`SELECT * from CoffeeReviews.TasteProfile NATURAL JOIN CoffeeReviews.Coffee NATURAL JOIN CoffeeReviews.Posts`, (err, result, fields) => {
+      this.#dbConnection.query(`SELECT *  FROM CoffeeReviews.Posts p, CoffeeReviews.TasteProfile t, CoffeeReviews.Coffee c where p.PID = \'${PID}\' and p.PID = t.PID and p.CID = c.CID`, (err, result, fields) => {
         if(err) reject(new DBInitError(err.message));
-        resolve(result);
-      })
-    })
-  }
-
-  async getProfile(PID) {
-    //create a promise to create the query
-    return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`use CoffeeReviews; 
-                                SELECT * exclude PID from TasteProfile where PID = \'${PID}\';)`, (err, result, fields) => {
-        if(err) reject(new DBInitError("Error in Query: Post not found"));
         resolve(result);
       })
     })
@@ -95,12 +83,11 @@ class DBHandler {
     })
   }
 
-  async createPost(Coffee, Post, TasteProfile, UID) {
+  async createEntirePost(Coffee, Post, TasteProfile, UID) {
     //use a transaction to ensure proper rollback and atomicitiy
-    const statementList = [this.createCoffee(Coffee.CID, Coffee.Roaster, Coffee.OriginCountry, Coffee.CoffeeName),
-                           this.createTasteProfile(Post.PID, TasteProfile),
-                           this.createPost(Post, UID, Coffee.CID)]
-
+    console.log("hi");
+    
+    
     return new Promise((resolve, reject) => {
         this.#dbConnection.beginTransaction(async (err) => {
           //return error if the transaction can't be initialized
@@ -108,21 +95,27 @@ class DBHandler {
 
           //execute all the statements in the list, rolling back the transaction and rejeting on error
           try {
-            for(let index = 0; index < statementList.length(); index++) {
-              let result = await statementList[index]();
-            }
+            this.createCoffee(Coffee.CID, Coffee.Roaster, Coffee.OriginCountry, Coffee.CoffeeName),
+            this.createPost(Post, UID, Coffee.CID),
+            this.createTasteProfile(Post.PID, TasteProfile)
           } catch(db_error) {
             this.#dbConnection.rollback((err) => {reject(new DBInitError(err.message))})
             reject(new DBInitError(db_error.message))
           }
   
           //finish the transaction
-          this.#dbConnection.commit((db_error) => {
-            this.#dbConnection.rollback((err) => {reject(new DBInitError(err.message))})
-            reject(new DBInitError(db_error.message))
+          this.#dbConnection.commit((err) => {
+            if(err) {
+              this.#dbConnection.rollback((err) => {
+                if(err)
+                  reject(new DBInitError(err.message))
+              })
+              reject(new DBInitError(err.message))
+            }
+            resolve("Post successfully created!");
           })
           
-          resolve("Post successfully created!");
+          
         })
     })
   }

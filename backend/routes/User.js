@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const crypto = require('crypto');
-//const bcrypt = require('bcrypt');
 require('dotenv').config();
 //check the info is valid
 
@@ -25,7 +23,7 @@ router.post("/create", async (req, res) => {
   if(req.body.Username === undefined || req.body.password === undefined) {
     res.status(404)
     res.json({message: "no username or password passed"})
-  } else reqWrapper( async () => global.dbHelper.createUser(crypto.randomBytes(16).toString("hex").slice(0,10), req.body.Username, req.body.password), res);
+  } else reqWrapper( async () => global.dbHelper.createUser(require('crypto').randomBytes(16).toString("hex").slice(0,10), req.body.Username, req.body.password), res);
 })
 
 router.post('/login', async (req, res) => {

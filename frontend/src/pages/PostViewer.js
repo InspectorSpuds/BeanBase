@@ -20,6 +20,7 @@ function PostViewer() {
     //get the actual post itself then extract the content and rating
     getter.getPost_withID(id)
       .then(response => {
+        console.log(response)
         setPost((response.data[0].Content))
         setTaste([
           {

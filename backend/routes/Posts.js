@@ -5,10 +5,16 @@ const router = express.Router()
 
 //Preconditions: all post details MUST be provided
 router.post("/create", async (req, res) => {
-  let PID = crypto.randomBytes(16).toString("hex").slice(0,10);
-  let newPost = JSON.stringify()
-  reqWrapper(async () => global.dbHelper.createPost(req.params.Coffee, req.params.Post, req.params.TasteProfile, req.params.UID), 
-             res, {status: 404, message: "Unable to create post"})
+  try {
+    console.log(req.body.Post)
+    let result = await global.dbHelper.createEntirePost(req.body.Coffee, req.body.Post, req.body.TasteProfile, req.body.UID);
+    res.status(200)
+    res.json("successfully posted")
+  } catch(error) {
+    console.log(error.message);
+    res.status(404)
+    res.json({message: error.message})
+  }
 })
 
 //Precondition: pid must be a value and not undefined, NaN, etc. 
@@ -25,14 +31,6 @@ router.get("/get/:PID", async (req, res) => {
 router.get("/getAll", async (req, res) => {
   reqWrapper(async () => global.dbHelper.getPosts(), res, {status: 404, message: "Posts not found"});
 })
-
-//careful with this one, make sure necessary security measures are taken
-/*router.delete("/del", async (req, res) => {
-  if(req.body.PID === undefined || isNaN(req.body.PID)) {
-    res.status("404")
-    res.json({message: "no post id passed"})
-  } else reqWrapper(global.dbHelper.deletePost(), {status: 404, message: "Post not found"});
-})*/
 
 async function reqWrapper(command, res,  errorResponse={status:404, message: "Resource not found"}){
   try{

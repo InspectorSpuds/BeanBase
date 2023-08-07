@@ -32,6 +32,17 @@ class RequestSender {
     })
   }
 
+  async createPost(Coffee, Post, TasteProfile, UID) {
+    console.log(JSON.stringify(Coffee) + '\n' + JSON.stringify(Post) + '\n' + UID)
+    const URL_ROUTE = `/Posts/create`
+    return axios.post(`${this.url}${URL_ROUTE}`, {
+      Coffee: JSON.parse(JSON.stringify(Coffee)),
+      Post: JSON.parse(JSON.stringify(Post)),
+      TasteProfile: JSON.parse(JSON.stringify(TasteProfile)), 
+      UID: UID
+    }) 
+  }
+
   async createUser(Username, password) {
     const URL_ROUTE = `/User/create`
 

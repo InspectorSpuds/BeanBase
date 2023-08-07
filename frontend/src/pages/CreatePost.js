@@ -2,33 +2,46 @@ import './CreatePost.css'
 import Navbar from './Navbar';
 import Footer from './Footer'
 import { useEffect, useState } from 'react';
-import PostCard from './PostCard';
 import RequestSender from '../api/RequestSender';
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import LoadScreen from './LoadScreen';
 import Cookies from 'universal-cookie';
-
+import nodeCrypto from 'crypto';
+const uuid = require('uuid')
 
 function PostForm(props) {
   //post submission action
   const createPost = (e) => {
     e.preventDefault();
+    
     //information needed for a post, pretty self-explan
+    console.log(uuid.v4().toString().slice(0,10));
     const TasteProfile = tasteList;
     const Coffee = {
-      CID : 0,
+      CID : uuid.v4().toString().slice(0,10), 
       Roaster: roaster,
       OriginCountry: origin,
       CoffeeName: coffeeName
     }
     const Post = {
-      PID: 0, 
+      PID: uuid.v4().toString().slice(0,10), 
       Title: postTitle,
-      CreationDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
+      CreationDate: new Date().toJSON().slice(0, 10),
       Content: content.replaceAll("\n", "<br></br>")
     }
     const UID = props.id;
+    const reqSender = new RequestSender();
+    
+    //send a request to create the post and handle any issues that may pop up
+    reqSender.createPost(Coffee, Post, TasteProfile, UID)
+      .then(response => {
+        alert('post successfully created')
+        navigate('/')
+      })
+      .catch(error => alert(`Error: ${error.message}`))
+
+
   }
 
   //changes the taste profile object's field for designated key
@@ -49,6 +62,7 @@ function PostForm(props) {
   const [origin, setOrigin]   = useState("none")
   const [coffeeName, setName] = useState("none")
   const [postTitle, setPostTitle] = useState("Review")
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -109,7 +123,7 @@ function CreatePost() {
   //the validity or existence of the login token
   const [tokenValid, setTokenValidity] = useState(false);
   const [userName, setUserName] = useState("");
-  let userID = "";
+  const [userID, setUserID] = useState("");
   const navigate = useNavigate();
 
   //on start, populate the page with
@@ -138,7 +152,7 @@ function CreatePost() {
           .then(response => {
             setTokenValidity(true);
             setUserName(response.data[0].Username)
-            userID = response.data[0].id
+            setUserID(old => response.data[0].id)
           })
           .catch(error => {
             alert(error.message);
