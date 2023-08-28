@@ -1,12 +1,3 @@
-.Main {
-  padding-top: 30px;
-  height:calc(100vh - var(--bar-height) );
-  display: flex;
-  gap: 0;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 h2, h1 {
   margin: 0;
 }
@@ -17,9 +8,29 @@ h2 {
 }
 
 #greeter {
-  background-color: rgb(27, 99, 162);
+  background-color: var(--Main-color);
   color: white;
   text-align: center;
-  padding: 80px;
+  width: 100%;
+  height: 300px;
+  line-height: 300px;
 }
 
+.filter {
+  background-color: var(--Secondary-color);
+  width: 100%;
+  height: 60px;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--Main-text-color);
+}
+
+.CardFlow {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  height: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  gap: 30px;
+}

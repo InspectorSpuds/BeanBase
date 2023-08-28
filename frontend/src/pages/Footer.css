@@ -3,10 +3,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  bottom: 0;
   height: calc(var(--bar-height)* 1.5);
-  background-color: rgb(32, 32, 32);
-  color: rgb(167, 167, 167);
+  background-color: var(--Secondary-color);
+  color: var(--Main-text-color);
   font-size: 12px;
 }
 

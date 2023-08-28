@@ -172,7 +172,9 @@ function CreatePost() {
     return (
       <div>
         <Navbar/>
-        <div id={"greeter"}>Welcome {userName}! Let's create a post!</div>
+        <div id={"greeter"}>
+          <h1>Welcome {userName}! Let's create a post!</h1>
+        </div>
         <div className={"Main"}>
           <PostForm id={userID}/>
           <Footer/>

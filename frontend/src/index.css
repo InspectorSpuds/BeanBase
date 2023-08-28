@@ -1,5 +1,9 @@
+
 body {
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-y:auto;
+  width:100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -12,7 +16,55 @@ code {
     monospace;
 }
 
-:root {
-  --text-color: white;
-  --bar-height: 45px;
+
+h1, h2, h3 {
+  margin: 0px;
 }
+
+
+:root {
+  --bar-height: 45px;
+  --Main-color: #1463F3; 
+  --Secondary-color: rgb(0, 0, 0);
+  --Third-color:rgb(67, 210, 253);
+  --Main-text-color: white;
+}
+
+input[type=text] {
+  transition-duration: 0.1s;
+  box-sizing: border-box;
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: inherit;
+  border-bottom: 2px solid black;
+}
+input[type=text]:focus {
+  transition-duration: 0.1s;
+  color: black;
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: inherit;
+  border-bottom: 4px solid rgb(255, 255, 255);
+}
+
+input[type=submit], button {
+  background-color: var(--Secondary-color);
+  padding: 5px;
+  border: none;
+  color: white;
+}
+
+input[type=submit]:hover, button:hover {
+  transition-duration: 0.1s;
+  background-color: rgb(167, 193, 226);
+}
+
+input[type=submit]:active, button:active {
+  transition-duration: 0.1s;
+  background-color: rgb(114, 132, 156);
+}
+

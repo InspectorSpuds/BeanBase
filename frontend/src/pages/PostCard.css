@@ -1,59 +1,38 @@
 .CardWrapper {
-  width: 100%;
-  height: 300px;
-  width: 100%;
+  transition-duration: 300ms;
+  width:  400px;
+  height: 400px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.CardBorder {
-  border-radius: 15px;
-  height: 250px;
-  width: 75%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.CardContent {
-
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  overflow: hidden;
+  align-items: left;
 }
 
-.PostCardDate {
-  padding-top: 5px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  font-style: italic;
-  font-size: 14px; 
+.CardWrapper:hover {
+  transition-duration: 300ms;
+  filter: brightness(170%);
+  scale: 90%;
 }
 
-.PostCardDescr {
-  background-color: grey;
+.CardWrapper:active {
+  transition-duration: 300ms;
+  filter: brightness(80%);
+}
+
+
+
+
+.CardTitle{
+  background-color: var(--Main-color);
+  color: var(--Main-text-color);
+  flex: 4;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.CardFooter {
   flex: 1;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 20px;
-}
-
-.PostCardHeader{
-  background-color: rgb(27, 99, 162);
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  flex: 0.5;
-}
-
-.PostCardHeader  {
-  padding-left: 10px;
+  background-color: black;
+  color: var(--Main-text-color);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }

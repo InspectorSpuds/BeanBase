@@ -45,17 +45,28 @@ function Home() {
 
   return (
     <div>
-      <Navbar/>
+      <Navbar></Navbar>
       <h1 id={"greeter"}>Welcome!</h1>
-      <h2>Posts</h2>
-      <div className={"Main"}>
-        {postList.map( postobj => {
-          return <PostCard date={postobj.date} title={postobj.title} filler={postobj.filler} id={postobj.id} />
-        })}
-        <Footer/>
+      <div className={"filter"}>Posts</div>
+      <div className={"CardFlow"}>
+          {postList.map( postobj => {
+            return <PostCard date={postobj.date} title={postobj.title} filler={postobj.filler} id={postobj.id} />
+          })}
       </div>
+      <Footer/>
     </div>
+
+   
   )
 }
 
 export default Home;
+
+/*
+      <div className={"Main"}>
+        <Navbar/>
+        
+        
+
+      </div>
+ */

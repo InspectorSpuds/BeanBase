@@ -18,12 +18,7 @@ h2 {
   padding-top: 10px;
 }
 
-#greeter {
-  background-color: rgb(27, 99, 162);
-  color: white;
-  text-align: center;
 
-}
 
 .formDivider {
   display: flex;
@@ -33,35 +28,11 @@ h2 {
 
 .postForm {
   display: flex;
-  background-color: rgb(27, 99, 162);
+  background-color: var(--Main-color);
   flex-direction: column;
   width: 90vw;
-}
-
-.Tabs {
-  background-color: grey;
-  display: flex;
-  justify-content: space-evenly;
-
-}
-
-.Tabs > div {
-  text-align: center;
-  background-color: darkgrey;
-  flex: 1;
-}
-
-.Tabs > div:hover {
-  background-color: rgb(124, 255, 246);
-}
-
-.Tabs > div:active {
-  background-color: rgb(34, 156, 255);  
-}
-
-.PostRow > textarea {
-  max-width: 70vw;
-  height:80vh;
+  padding: 30px;
+  margin-bottom: 30px;
 }
 
 .Actions {
