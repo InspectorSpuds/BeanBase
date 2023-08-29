@@ -56,11 +56,6 @@ class DBHandler {
       multipleStatements: true,
     }) 
 
-    this.#dbConnection.connect(function(err) {
-      if (err) throw new DBInitError(err.message);
-      else console.log("connected")
-    })
-
     this.#dbInitiailized = true;
   }
 
