@@ -56,7 +56,6 @@ class DBHandler {
       idleTimeout: 80000,
       enableKeepAlive: true, 
       connectTimeout: 100000,
-      keep
       multipleStatements: true,
     }) 
 
