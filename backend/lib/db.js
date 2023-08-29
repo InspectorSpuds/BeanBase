@@ -1,5 +1,5 @@
 const fs = require('fs')
-const mysql = require("mysql")
+const mysql = require("mysql2")
 
 class DBInitError extends Error {
   constructor(message) {
@@ -17,7 +17,7 @@ class DBHandler {
   #dbConnection
   #dbInitiailized
 
-  //preconditions: host (string) is the url of the local db
+  //pr`econditions: host (string) is the url of the local db
   //process: local testing db construction (don't use in production)
   /*constructor(host, user,  password) {
     this.#mysql = require("mysql")
