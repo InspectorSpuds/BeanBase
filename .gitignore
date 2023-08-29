@@ -133,3 +133,6 @@ dist
 # SQL DB export scripts 
 CoffeeReviewsDB.sql
 CoffeeReviewsDB_old.sql
+
+#ssl certs
+DigiCertGlobalRootCA.crt.pem

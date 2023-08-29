@@ -1,3 +1,5 @@
+const fs = require('fs')
+const mysql = require("mysql")
 class DBInitError extends Error {
   constructor(message) {
     super(message);
@@ -9,29 +11,60 @@ class DBHandler {
   #host
   #user
   #password
-  #mysql
+  #port
+  #ssl
   #dbConnection
   #dbInitiailized
 
-
-  constructor(host, user,  password) {
+  //preconditions: host (string) is the url of the local db
+  //process: local testing db construction (don't use in production)
+  /*constructor(host, user,  password) {
     this.#mysql = require("mysql")
     this.#host = host
     this.#user = user
     this.#password = password
     this.#dbInitiailized = false
+    this.#port = null
+    this.#ssl = null
+  }*/
+
+  //preconditions: host (string) is the url of the remote db, 
+  //               port must be an int, ssl_path must be a valid ssl path
+  //process: remote db connection constructor for mysql
+  constructor(host, userr,  password, port, ssl_path) {
+    this.#host = host
+    this.#user = userr
+    this.#password = password
+    this.#dbInitiailized = false
+    this.#port = port
+    this.#ssl = ssl_path
   }
 
   initDB() {
-    this.#dbConnection = this.#mysql.createConnection({
+    this.#dbConnection = mysql.createConnection({
       host: this.#host,
       user: this.#user,
       password: this.#password,
+      port: this.#port,
+      ssl: {
+        ca:fs.readFileSync(this.#ssl)
+      },
       multipleStatements: true,
-    })
+    })   
+    /*this.#dbConnection = mysql.createConnection({
+      host:"db-serverrr.mysql.database.azure.com", 
+      user:"dothings", 
+      password:"Ishiraishan#12", 
+      port:3306, 
+      ssl:{
+        ca:fs.readFileSync("DigiCertGlobalRootCA.crt.pem")
+      },
+      multipleStatements: true
+    });*/
 
-    this.#dbConnection.connect((err) => {
-      if (err) throw DBInitError("Error connecting to DB");
+    this.#dbConnection.connect(function(err) {
+      if (err) throw new DBInitError(err.message);
+      else console.log("connected")
     })
 
     this.#dbInitiailized = true;

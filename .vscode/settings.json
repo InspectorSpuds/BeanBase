@@ -1,0 +1,19 @@
+{
+  "sqltools.connections": [
+    {
+      "mssqlOptions": {
+        "useUTC": true,
+        "encrypt": true
+      },
+      "previewLimit": 50,
+      "server": "coffeereviews.database.windows.net",
+      "port": 1433,
+      "driver": "MSSQL",
+      "name": "CoffeeReviews",
+      "group": "CoffeeReviews",
+      "database": "CoffeeReviews",
+      "username": "adm",
+      "password": "Ishiraishan#12"
+    }
+  ]
+}
