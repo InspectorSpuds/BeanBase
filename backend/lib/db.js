@@ -50,6 +50,7 @@ class DBHandler {
       ssl: {
         ca:fs.readFileSync(this.#ssl)
       },
+      connectTimeout: 100000,
       multipleStatements: true,
     }) 
 
