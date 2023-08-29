@@ -50,17 +50,7 @@ class DBHandler {
         ca:fs.readFileSync(this.#ssl)
       },
       multipleStatements: true,
-    })   
-    /*this.#dbConnection = mysql.createConnection({
-      host:"db-serverrr.mysql.database.azure.com", 
-      user:"dothings", 
-      password:"Ishiraishan#12", 
-      port:3306, 
-      ssl:{
-        ca:fs.readFileSync("DigiCertGlobalRootCA.crt.pem")
-      },
-      multipleStatements: true
-    });*/
+    }) 
 
     this.#dbConnection.connect(function(err) {
       if (err) throw new DBInitError(err.message);
