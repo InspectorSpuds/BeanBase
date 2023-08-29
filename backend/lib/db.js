@@ -99,7 +99,7 @@ class DBHandler {
   async getPosts() {
     return new Promise((resolve, reject) => {
       this.#dbConnection.query(`SELECT * FROM CoffeeReviews.Posts`, (err, result, fields) => {
-        if(err) reject(new DBInitError("Error getting post cards"));
+        if(err) reject(new DBInitError("Error getting post cards => " + err.mesage));
         resolve(result);
       })
     })
