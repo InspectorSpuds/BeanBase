@@ -1,5 +1,6 @@
 const fs = require('fs')
 const mysql = require("mysql")
+
 class DBInitError extends Error {
   constructor(message) {
     super(message);

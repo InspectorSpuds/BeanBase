@@ -6,7 +6,7 @@ const {DBHandler} = require('./lib/db')
 require('dotenv').config({path: "/etc/secrets/.env"});
 
 const app = express()
-const PORT =  process.env.port || 4000
+const PORT =  process.env.PORT || 4000
 
 //routes
 const Posts = require('./routes/Posts.js')
