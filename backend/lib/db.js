@@ -42,7 +42,9 @@ class DBHandler {
   }
 
   initDB() {
-    this.#dbConnection = mysql.createConnection({
+    //create a connection pool
+    this.#dbConnection = mysql.createPool({
+      connectionLimit: 100,
       host: this.#host,
       user: this.#user,
       password: this.#password,
