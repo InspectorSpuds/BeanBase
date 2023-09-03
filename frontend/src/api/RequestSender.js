@@ -10,11 +10,11 @@ class RequestSender {
     
     
     
-    //test url------------
-    //this.url = "http://localhost:4000";
+    //test/aws url------------
+    this.url = "http://localhost:4000";
 
     //production url--------
-    this.url = "https://coffeereviews-backend.onrender.com"
+    //this.url = "https://coffeereviews-backend.onrender.com"
   }
 
 
