@@ -22,7 +22,7 @@ app.listen(PORT, () => {
   try {
     dbHelper.initDB();
   } catch (DBInitError) {
-    console.log(DBInitError.message);
+    console.log(DBInitError.stack);
     process.exit();
   }
 
