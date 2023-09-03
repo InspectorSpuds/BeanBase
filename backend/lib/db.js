@@ -49,6 +49,7 @@ class DBHandler {
       user: this.#user,
       password: this.#password,
       port: this.#port,
+      database: "CoffeeReviews",
       ssl: {
         ca:fs.readFileSync(this.#ssl)
       },
@@ -74,11 +75,10 @@ class DBHandler {
     return this.#dbInitiailized
   }
 
-
   async getPost(PID) {
     //create a promise to create the query
     return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`SELECT *  FROM CoffeeReviews.Posts p, CoffeeReviews.TasteProfile t, CoffeeReviews.Coffee c where p.PID = \'${PID}\' and p.PID = t.PID and p.CID = c.CID`, (err, result, fields) => {
+      this.#dbConnection.query(`SELECT *  FROM CoffeeReviews. posts p, CoffeeReviews.tasteprofile t, CoffeeReviews.coffee c where p.PID = \'${PID}\' and p.PID = t.PID and p.CID = c.CID`, (err, result, fields) => {
         if(err) reject(new DBInitError(err.message));
         resolve(result);
       })
@@ -88,7 +88,7 @@ class DBHandler {
   async getUser(name) {
     //create a promise to create the query
     return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`SELECT * from CoffeeReviews.User where Username = \'${name}\';`, (err, result, fields) => {
+      this.#dbConnection.query(`SELECT * from CoffeeReviews.user where Username = \'${name}\';`, (err, result, fields) => {
         if(err) reject(new DBInitError(err.message));
         resolve(result);
       })
@@ -101,7 +101,7 @@ class DBHandler {
   //ERROR RESPONSE: DBInitError promise reject if something goes wrong
   async getPosts() {
     return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`SELECT * FROM CoffeeReviews.Posts`, (err, result, fields) => {
+      this.#dbConnection.query(`SELECT * FROM posts`, (err, result, fields) => {
         if(err) reject(new DBInitError("Error getting post cards => " + err));
         resolve(result);
       })
@@ -109,44 +109,25 @@ class DBHandler {
   }
 
   async createEntirePost(Coffee, Post, TasteProfile, UID) {
-    //use a transaction to ensure proper rollback and atomicitiy
-    console.log("hi");
+    //use a transaction to ensure proper rollback and atomicitiy   
     
-    
-    return new Promise((resolve, reject) => {
-        this.#dbConnection.beginTransaction(async (err) => {
-          //return error if the transaction can't be initialized
-          if(err) reject(new DBInitError(err.message))
-
-          //execute all the statements in the list, rolling back the transaction and rejeting on error
-          try {
-            this.createCoffee(Coffee.CID, Coffee.Roaster, Coffee.OriginCountry, Coffee.CoffeeName),
-            this.createPost(Post, UID, Coffee.CID),
-            this.createTasteProfile(Post.PID, TasteProfile)
-          } catch(db_error) {
-            this.#dbConnection.rollback((err) => {reject(new DBInitError(err.message))})
-            reject(new DBInitError(db_error.message))
-          }
-  
-          //finish the transaction
-          this.#dbConnection.commit((err) => {
-            if(err) {
-              this.#dbConnection.rollback((err) => {
-                if(err)
-                  reject(new DBInitError(err.message))
-              })
-              reject(new DBInitError(err.message))
-            }
-            resolve("Post successfully created!");
-          })
-          
-          
-        })
+    return new Promise(async (resolve, reject) => {
+      try {
+        await this.#dbConnection.promise().query('START TRANSACTION;')
+        await this.createCoffee(Coffee.CID, Coffee.Roaster, Coffee.OriginCountry, Coffee.CoffeeName)
+        await this.createPost(Post, UID, Coffee.CID)
+        await this.createTasteProfile(Post.PID, TasteProfile)
+        await this.#dbConnection.promise().query("COMMIT;")
+        resolve("Successfully created post")
+      } catch(error) {
+        await this.#dbConnection.promise().query("ROLLBACK;")
+        reject(error.message);
+      }
     })
   }
 
   async createCoffee(CID, Roaster, OriginCountry, CoffeeName) {
-    const SQL_STATEMENT = `INSERT INTO CoffeeReviews.Coffee Values(\'${CID}\', \'${Roaster}\', \'${OriginCountry}\',\'${CoffeeName}\');`
+    const SQL_STATEMENT = `INSERT INTO CoffeeReviews.coffee Values(\'${CID}\', \'${Roaster}\', \'${OriginCountry}\',\'${CoffeeName}\');`
   
     return new Promise((resolve, reject) => {
       this.#dbConnection.query(SQL_STATEMENT, (err, result, fields) => {
@@ -157,7 +138,7 @@ class DBHandler {
   }
 
   async createTasteProfile(PID, TasteProfile) {
-    const SQL_STATEMENT = `INSERT INTO CoffeeReviews.TasteProfile Values(\'${PID}\',
+    const SQL_STATEMENT = `INSERT INTO CoffeeReviews.tasteprofile Values(\'${PID}\',
                                                            \'${TasteProfile['Finish']}\',
                                                            \'${TasteProfile['Sweet']}\',
                                                            \'${TasteProfile['Acidic']}\',
@@ -184,7 +165,7 @@ class DBHandler {
   }
 
   async createPost(Post, UID, CID) {
-    const SQL_STATEMENT = `INSERT INTO CoffeeReviews.Posts Values(\'${Post.PID}\',\'${Post.Title}\',\'${Post.CreationDate}\',\'${Post.Content}\',\'${CID}\',\'${UID}\');`
+    const SQL_STATEMENT = `INSERT INTO CoffeeReviews.posts Values(\'${Post.PID}\',\'${Post.Title}\',\'${Post.CreationDate}\',\'${Post.Content}\',\'${CID}\',\'${UID}\');`
 
     return new Promise((resolve, reject) => {
       this.#dbConnection.query(SQL_STATEMENT, (err, result, fields) => {
@@ -196,7 +177,7 @@ class DBHandler {
 
   async deletePost(PID) {
     return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`DELETE FROM CoffeeReviews.Posts WHERE PID=${PID};`, (err, result, fields) => {
+      this.#dbConnection.query(`DELETE FROM CoffeeReviews.posts WHERE PID=${PID};`, (err, result, fields) => {
         if(err) reject(new DBInitError(err.message))
         resolve(result)
       })
@@ -205,7 +186,7 @@ class DBHandler {
 
   async createUser(id, Username, password) {
     return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`insert into CoffeeReviews.User values(\'${id}\',\'${Username}\',\'${password}\');`, (err, result, fields) => {
+      this.#dbConnection.query(`insert into CoffeeReviews.user values(\'${id}\',\'${Username}\',\'${password}\');`, (err, result, fields) => {
         if(err) console.log(err.message)
         if(err) reject(new DBInitError(err.message))
         resolve(result)
@@ -216,7 +197,7 @@ class DBHandler {
   async checkUser(Username, password) {
     try {
       const result = await new Promise((resolve, reject) => {
-        this.#dbConnection.query(`SELECT COUNT(*) as count from CoffeeReviews.User where Username=\'${Username}\' and password=\'${password}\';`, (err, result, fields) => {
+        this.#dbConnection.query(`SELECT COUNT(*) as count from CoffeeReviews.user where Username=\'${Username}\' and password=\'${password}\';`, (err, result, fields) => {
           if(err) reject(new DBInitError(err.message))
           resolve(result[0].count > 0)
         })

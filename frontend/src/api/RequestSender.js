@@ -7,7 +7,14 @@ class RequestSender {
 
   constructor() {
     //read info from backendindo.json file
-    this.url = "http://localhost:4000";
+    
+    
+    
+    //test url------------
+    //this.url = "http://localhost:4000";
+
+    //production url--------
+    this.url = "https://coffeereviews-backend.onrender.com"
   }
 
 

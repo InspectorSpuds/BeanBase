@@ -43,7 +43,6 @@
 #LoginButton {
   text-decoration: none;
   height: calc(var(--bar-height) - 7px);
-  line-height: calc(var(--bar-height) - 7px);
   border-radius: 7%;
   background-color: grey;
   margin-top:   3.5px;

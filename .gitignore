@@ -135,4 +135,4 @@ CoffeeReviewsDB.sql
 CoffeeReviewsDB_old.sql
 
 #ssl certs
-DigiCertGlobalRootCA.crt.pem
+us-east-2-bundle.pem

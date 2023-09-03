@@ -20,7 +20,7 @@ router.post("/create", async (req, res) => {
 //Precondition: pid must be a value and not undefined, NaN, etc. 
 //get full post details for a single post
 router.get("/get/:PID", async (req, res) => {
-  if(req.params.PID == undefined) {
+  if(req.params.PID === undefined) {
     res.status(404)
     res.json({message: "no post id passed"})
   } else reqWrapper( async () => global.dbHelper.getPost(req.params.PID),res);
@@ -29,7 +29,7 @@ router.get("/get/:PID", async (req, res) => {
 //Preconditions: none
 //Process: get partial post details for all posts (to create Post cards in react) 
 router.get("/getAll", async (req, res) => {
-  reqWrapper(async () => global.dbHelper.getPosts(), res, {status: 404, message: "Posts not found"});
+  reqWrapper(async () => global.dbHelper.getPosts(), res);
 })
 
 async function reqWrapper(command, res,  errorResponse={status:404, message: "Resource not found"}){
@@ -38,6 +38,7 @@ async function reqWrapper(command, res,  errorResponse={status:404, message: "Re
     const dbResult = await command()
     res.json(dbResult)
   } catch(error) { //catch any sort of errors
+    console.log(error.message)
     res.status(404)
     res.json(error.message)
   }

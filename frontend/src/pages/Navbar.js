@@ -26,7 +26,7 @@ function Navbar() {
             )
   } else {
     login = (<div className={"NavbarRight"}>
-              <Link to={"/Login"} id={"LoginButton"}>👤 Login</Link>
+              <button id={"LoginButton"} onClick={e => navigate('/login')}>👤 Login</button>
             </div>
             )
   }
