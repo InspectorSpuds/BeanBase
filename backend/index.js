@@ -3,7 +3,7 @@
 //@Purpoes: routes and handling for expressjs backend
 const express = require("express");
 const {DBHandler} = require('./lib/db')
-require('dotenv').config({path: "/etc/secrets/.env"});
+require('dotenv').config();
 
 const app = express()
 const PORT =  process.env.PORT || 4000
