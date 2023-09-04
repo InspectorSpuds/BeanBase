@@ -51,7 +51,7 @@ class DBHandler {
       port: this.#port,
       database: "CoffeeReviews",
       ssl: {
-        ca:fs.readFileSync(this.#ssl)
+        ca:fs.readFileSync("us-east-2-bundle.pem")
       },
       maxIdle: 100, 
       idleTimeout: 80000,
