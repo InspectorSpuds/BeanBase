@@ -2,6 +2,7 @@
 //@author: Ishan Parikh
 //@Purpoes: routes and handling for expressjs backend
 const express = require("express");
+const serverless = require("serverless-http")
 const {DBHandler} = require('./lib/db')
 require('dotenv').config();
 
@@ -17,17 +18,27 @@ const User = require('./routes/User.js')
 global.dbHelper = new DBHandler(process.env.HOST, process.env.ADMIN, process.env.PASSWORD, parseInt(process.env.PORT), process.env.SSL)
 global.secret = process.env.ACCESS_TOKEN_SECRET;
 
-app.listen(PORT, () => {
-  //try to init db, on fail exit program
-  try {
-    dbHelper.initDB();
-  } catch (DBInitError) {
-    console.log(DBInitError.stack);
-    process.exit();
-  }
+//init db and run serverless
+try {
+  dbHelper.initDB();
+} catch (DBInitError) {
+  console.log(DBInitError.stack);
+  process.exit();
+}
 
-  console.log(`CoffeeBlog REST backend: http://localhost:${PORT}`)
-})
+exports.handler = serverless(app)
+
+//app.listen(PORT, () => {
+//  //try to init db, on fail exit program
+//  try {
+//    dbHelper.initDB();
+//  } catch (DBInitError) {
+//    console.log(DBInitError.stack);
+//    process.exit();
+//  }
+//
+//  console.log(`CoffeeBlog REST backend: http://localhost:${PORT}`)
+//})
 
 //to use data in body 
 app.use(express.json({
