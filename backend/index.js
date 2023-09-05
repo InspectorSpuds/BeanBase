@@ -6,7 +6,7 @@ const {DBHandler} = require('./lib/db')
 require('dotenv').config();
 
 const app = express()
-const PORT =  process.env.PORT || 4000
+const PORT =  4000
 
 //routes
 const Posts = require('./routes/Posts.js')
@@ -15,6 +15,7 @@ const User = require('./routes/User.js')
 
 //create db connection object and try to connect first and see if that works
 global.dbHelper = new DBHandler(process.env.HOST, process.env.ADMIN, process.env.PASSWORD, parseInt(process.env.PORT), process.env.SSL)
+//global.dbHelper = new DBHandler("127.0.0.1", "ishan", "Ishiraishan#12", parseInt(process.env.PORT))
 global.secret = process.env.ACCESS_TOKEN_SECRET;
 
 //init db and run serverless
@@ -25,6 +26,7 @@ app.listen(PORT, () => {
     dbHelper.initDB();
   } catch (DBInitError) {
     console.log(DBInitError.stack);
+    console.log(DBInitError.message);
     process.exit();
   }
 
@@ -39,7 +41,8 @@ app.use(express.json({
 //for local testing
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Origin", "http://3.19.60.153"); 
+  //res.header("Access-Control-Allow-Origin", "http://3.19.60.153"); 
+  res.header("Access-control-Allow-Methods","GET, POST, DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });

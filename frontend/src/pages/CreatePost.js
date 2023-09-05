@@ -7,8 +7,8 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import LoadScreen from './LoadScreen';
 import Cookies from 'universal-cookie';
-import nodeCrypto from 'crypto';
 const uuid = require('uuid')
+
 
 function PostForm(props) {
   //post submission action
@@ -28,7 +28,7 @@ function PostForm(props) {
       PID: uuid.v4().toString().slice(0,10), 
       Title: postTitle,
       CreationDate: new Date().toJSON().slice(0, 10),
-      Content: content.replaceAll("\n", "<br></br>")
+      Content: content.replaceAll('\'', '\\\'').replaceAll('\"', '\\\"') //replace mysql special characters
     }
     const UID = props.id;
     const reqSender = new RequestSender();
@@ -40,8 +40,6 @@ function PostForm(props) {
         navigate('/')
       })
       .catch(error => alert(`Error: ${error.message}`))
-
-
   }
 
   //changes the taste profile object's field for designated key
@@ -54,15 +52,14 @@ function PostForm(props) {
   }
 
   //form fields to submit
-  const [content, setContent] = useState("")
-  const [tasteList, setTaste] = useState({'Finish': 0,'Sweet': 0,'Acidic': 0,'Floral':0,'Spicy':0,'Salty':0,'Berry':0,'Citrus':0,'Stonefruit':0,
-                     'Chocolate': 0,'Caramel':0,'Smoky':0,'Bitter':0,'Savory':0,'Body':0,'Clean':0})
-  const [currentTab, setCurrTab] = useState("content");
-  const [roaster, setRoaster] = useState("none")
-  const [origin, setOrigin]   = useState("none")
-  const [coffeeName, setName] = useState("none")
+  const [content, setContent]     = useState("")
+  const [tasteList, setTaste]     = useState({'Finish': 0,'Sweet': 0,'Acidic': 0,'Floral':0,'Spicy':0,'Salty':0,'Berry':0,'Citrus':0,'Stonefruit':0,'Chocolate': 0,'Caramel':0,'Smoky':0,'Bitter':0,'Savory':0,'Body':0,'Clean':0})
+  const [currentTab, setCurrTab]  = useState("content");
+  const [roaster, setRoaster]     = useState("none")
+  const [origin, setOrigin]       = useState("none")
+  const [coffeeName, setName]     = useState("none")
   const [postTitle, setPostTitle] = useState("Review")
-  const navigate = useNavigate();
+  const navigate                  = useNavigate();
 
   return (
     <div>
@@ -72,7 +69,7 @@ function PostForm(props) {
             <h2>Post Details</h2>
               <div className={"PostRow"}>
                 <label>Title: </label>
-                <input type={"text"} onChange={e => setPostTitle(old => e.target.value)} />
+                <input type={"text"} value={postTitle} onChange={e => setPostTitle(old => e.target.value)} />
               </div>
               <div className="PostRow">
                 <label>Content:</label>
@@ -118,8 +115,7 @@ function PostForm(props) {
   )  
 }
 
-
-function CreatePost() {
+function CreatePost(props) {
   //the validity or existence of the login token
   const [tokenValid, setTokenValidity] = useState(false);
   const [userName, setUserName] = useState("");
@@ -143,7 +139,7 @@ function CreatePost() {
     } else {
       //wait a bit (if there isn't a bit of delay, people assume nothing happens)
       const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
-      delay(5000)
+      delay(2000)
         .then(resolve => {
           //on successful validate, get the user id and name to store for creation
           //on failure, notify of error and redirect to home

@@ -21,7 +21,7 @@ function PostViewer() {
     getter.getPost_withID(id)
       .then(response => {
         console.log(response)
-        setPost((response.data[0].Content))
+        setPost((response.data[0].Content.replace('\\\'','\'').replace('\\\"','\"'))) //replace special characters and new line characters
         setTaste([
           {
             subject: "Finish",
@@ -109,7 +109,16 @@ function PostViewer() {
      <div>
       <Navbar/>
       <div className={"Main"}>
-        <div dangerouslySetInnerHTML={{__html: post}}/>
+        <div>
+          {           
+            String(post).split("\n").map(element => {
+              return <>
+                <div>{element}</div>
+                <br></br>
+              </>
+            })
+          }
+        </div>
         <RatingGraph data={taste}/>
         <Footer/>
       </div>

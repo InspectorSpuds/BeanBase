@@ -1,7 +1,7 @@
 .CardWrapper {
   transition-duration: 300ms;
-  width:  400px;
-  height: 400px;
+  width:  320px;
+  height: 320px;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -19,14 +19,13 @@
 }
 
 
-
-
 .CardTitle{
   background-color: var(--Main-color);
   color: var(--Main-text-color);
   flex: 4;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  font-size: 20px;
 }
 
 .CardFooter {

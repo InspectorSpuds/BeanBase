@@ -11,10 +11,10 @@ class RequestSender {
     
     
     //test/aws url------------
-    //this.url = "http://localhost:4000";
+    this.url = "http://localhost:4000";
 
     //production url--------
-    this.url = "http://52.15.100.147"
+    //this.url = "http://52.15.100.147"
   }
 
 
@@ -29,6 +29,16 @@ class RequestSender {
 
   }
 
+  async getPostsWithUserID(UID) {
+    const URL_ROUTE = `/Posts/getAll/${UID}`
+
+    return new axios({
+      method: 'get',
+      url: `${this.url}${URL_ROUTE}`,
+      params: {}
+    })
+  }
+
   async getPost_withID(PID) {
     const URL_ROUTE = `/Posts/get/${PID}`
 
@@ -39,6 +49,17 @@ class RequestSender {
     })
   }
 
+  async removePost(PID) {
+    const URL_ROUTE = `/Posts/remove/${PID}`
+
+    return new axios({
+      method: 'delete',
+      url: `${this.url}${URL_ROUTE}`,
+      params: {}
+    })
+  }
+
+  //Preconditions: all information for all db objects should be correct and present
   async createPost(Coffee, Post, TasteProfile, UID) {
     console.log(JSON.stringify(Coffee) + '\n' + JSON.stringify(Post) + '\n' + UID)
     const URL_ROUTE = `/Posts/create`
@@ -75,6 +96,5 @@ class RequestSender {
   }
 
 }
-
 
 export default RequestSender;

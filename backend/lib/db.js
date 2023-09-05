@@ -19,15 +19,14 @@ class DBHandler {
 
   //pr`econditions: host (string) is the url of the local db
   //process: local testing db construction (don't use in production)
-  /*constructor(host, user,  password) {
-    this.#mysql = require("mysql")
-    this.#host = host
-    this.#user = user
-    this.#password = password
-    this.#dbInitiailized = false
-    this.#port = null
-    this.#ssl = null
-  }*/
+  //constructor(host, user,  password) {
+  //  this.#host = host
+  //  this.#user = user
+  //  this.#password = password
+  //  this.#dbInitiailized = false
+  //  this.#port = null
+  //  this.#ssl = null
+  //}
 
   //preconditions: host (string) is the url of the remote db, 
   //               port must be an int, ssl_path must be a valid ssl path
@@ -40,7 +39,7 @@ class DBHandler {
     this.#port = port
     this.#ssl = ssl_path
   }
-
+  
   initDB() {
     //create a connection pool
     this.#dbConnection = mysql.createPool({
@@ -103,6 +102,15 @@ class DBHandler {
     return new Promise((resolve, reject) => {
       this.#dbConnection.query(`SELECT * FROM posts`, (err, result, fields) => {
         if(err) reject(new DBInitError("Error getting post cards => " + err));
+        resolve(result);
+      })
+    })
+  }
+
+  async getUserPosts(PID) {
+    return new Promise((resolve, reject) => {
+      this.#dbConnection.query(`SELECT * FROM posts where PID=\'${PID}\'`, (err, result, fields) => {
+        if(err) reject(new DBInitError("Error getting user post cards => " + err));
         resolve(result);
       })
     })
@@ -175,10 +183,17 @@ class DBHandler {
     })
   }
 
+  //async updateEntirePost(Coffee, Post, TasteProfile, UID) {
+  //  
+  //}
+
   async deletePost(PID) {
     return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`DELETE FROM CoffeeReviews.posts WHERE PID=${PID};`, (err, result, fields) => {
-        if(err) reject(new DBInitError(err.message))
+      this.#dbConnection.query(`DELETE FROM CoffeeReviews.posts WHERE PID=\'${PID}\';`, (err, result, fields) => {
+        if(err) {
+          console.log(err.message);
+          reject(new DBInitError(err.message))
+        }
         resolve(result)
       })
     })
@@ -208,15 +223,6 @@ class DBHandler {
     }
   }
 
-  //note: I wouldn't reco using this unless you really need to, somewhat bypasses encapsulation
-  async execStmt(stmt) {
-    return new Promise((resolve, reject) => {
-      this.#dbConnection.query(stmt, (err, result, fields) => {
-        if(err) reject(new DBInitError(err.message))
-        resolve(result)
-      })
-    })
-  }
 }
 
 exports.DBHandler   = DBHandler;

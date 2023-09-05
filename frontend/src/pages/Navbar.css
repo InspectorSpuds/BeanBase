@@ -11,7 +11,7 @@
 }
 
 
-.NavbarRight > Link, a {
+Link, a {
   text-decoration: none;
   color: var(--text-color);
 }
@@ -28,6 +28,8 @@
   line-height: var(--bar-height);
   text-align: center;
   user-select: none;
+  white-space: nowrap;
+  text-overflow: clip;
 }
 
 .NavbarLeft > a > div:hover, .NavbarRight > a >  div:hover {
@@ -57,4 +59,28 @@
 
 #LoginButton:active {
   background-color: rgb(44, 44, 44);
+}
+
+
+.DropdownList {
+  z-index: 100;
+  padding: 400px;
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+
+.DropdownItem > a {
+  color: white;
+  line-height: var(--bar-height);
+  text-align: center;
+  user-select: none;
+  white-space: nowrap;
+  text-overflow: clip;
 }

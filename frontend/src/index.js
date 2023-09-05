@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import PostViewer from './pages/PostViewer'
 import CreateUser from './pages/CreateUser';
 import CreatePost from './pages/CreatePost';
+import ManagePosts from './pages/ManagePosts';
 
 //routes
 const router = createBrowserRouter([
@@ -29,16 +30,16 @@ const router = createBrowserRouter([
     element: <PostViewer></PostViewer>,
   },
   {
-    path: "/ManagePost",
-    element: <p> not here yet : (</p>,
-  },
-  {
     path: "/CreateUser",
     element: <CreateUser></CreateUser>,
   },
   {
     path: "/CreatePost",
     element: <CreatePost></CreatePost>,
+  },
+  {
+    path: "/ManagePosts",
+    element: <ManagePosts></ManagePosts>,
   }
   /*{
     path: "/Search/",

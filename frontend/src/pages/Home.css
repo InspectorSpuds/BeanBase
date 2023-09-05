@@ -23,8 +23,11 @@ h2 {
   font-size: 30px;
   font-weight: 800;
   color: var(--Main-text-color);
-  padding-left: 15px;
   padding-top: 15px;
+}
+
+.filter > div {
+  margin-left: 15px;
 }
 
 .CardFlow {

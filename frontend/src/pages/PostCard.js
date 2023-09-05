@@ -12,10 +12,13 @@ function PostCard(props) {
   const DATE =   new Date(POST_INFO.date).toLocaleDateString();
   const TITLE =  POST_INFO.title;
   const POSTID = POST_INFO.id;
+  const deletable = POST_INFO.deletable;
+  const deleteFunction = POST_INFO.deleteFunction;
+
   const navigate = useNavigate();
 
   return (
-    <div className={"CardWrapper"} onClick={e => navigate(`/POSTS/${POSTID}`)}>
+    <div className={"CardWrapper"} onClick={e => (!deletable ? navigate(`/POSTS/${POSTID}`) : deleteFunction(POSTID, TITLE))}>
       <div className={"CardTitle"}>
         <h2>{TITLE}</h2>  
       </div>
