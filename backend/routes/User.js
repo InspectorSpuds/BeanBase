@@ -76,6 +76,7 @@ router.post('/validateLoginToken',  async (req, res) => {
         console.log(err.message);
         res.status(404)
         res.json(err.message);
+        return;
       }
       //console.log(userResult);
       res.status(200)
@@ -84,6 +85,7 @@ router.post('/validateLoginToken',  async (req, res) => {
       console.log(err.message);
       res.status(404)
       res.json(err.message);
+      return;
     }
 
   }

@@ -6,6 +6,10 @@ import React from "react";
 // -Date Posted
 // -Title
 // -Filler Description
+
+//OPTIONAL DEPENDENCY INJECTION : (to allow for updated update and delete options with slightly altered styling)
+//--deletable, deleteFunction, updatePath: will add update and delete buttons for the post
+//  preconditions: MUST HAVE ALL of the above props in addition and they must be correct
 function PostCard(props) {
   const CHAR_LIMIT = 200;
   const POST_INFO = props;
@@ -14,14 +18,20 @@ function PostCard(props) {
   const POSTID = POST_INFO.id;
   const deletable = POST_INFO.deletable;
   const deleteFunction = POST_INFO.deleteFunction;
-
   const navigate = useNavigate();
 
   return (
-    <div className={"CardWrapper"} onClick={e => (!deletable ? navigate(`/POSTS/${POSTID}`) : deleteFunction(POSTID, TITLE))}>
+    <div className={(!deletable ? "CardWrapper" : "CardWrapper_update")} onClick={e => (!deletable ? navigate(`/POSTS/${POSTID}`) : 0)}>
       <div className={"CardTitle"}>
         <h2>{TITLE}</h2>  
       </div>
+      {deletable ? //if deletable is set as a prop to true, 
+        <div className={"PostOptions"}>
+          <button id={"BUTTONOFLESSDOOM"} onClick={e => navigate('/')}>Update</button>
+          <button id={"BUTTONOFDOOM"} onClick={e => deleteFunction(POSTID, TITLE)}>Delete</button>
+        </div> : 
+        <></>
+      }
       <div className={"CardFooter"}>
         <h2>{DATE}</h2>
       </div>

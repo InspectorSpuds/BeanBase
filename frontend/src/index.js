@@ -38,8 +38,12 @@ const router = createBrowserRouter([
     element: <CreatePost></CreatePost>,
   },
   {
-    path: "/ManagePosts",
+    path: "/ManagePosts/",
     element: <ManagePosts></ManagePosts>,
+  },
+  {
+    path: "/UpdatePost/:id",
+    element: <p> 404- not found</p>,
   }
   /*{
     path: "/Search/",
