@@ -2,19 +2,18 @@
 //Purpose: http request sender class
 import axios from 'axios'
 
+
+
 class RequestSender {
   url;
 
   constructor() {
     //read info from backendindo.json file
-    
-    
-    
-    //test/aws url------------
+    //test url------------
     //this.url = "http://localhost:4000";
 
     //production url--------
-    this.url = "http://52.15.100.147:4000"
+    this.url = String(process.env.REACT_APP_BACKEND_HOSTNAME);
   }
 
 
