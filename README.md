@@ -20,8 +20,7 @@ This project primarily uses npm to manage dependencies
 ## Clone: 
 run: `git clone https://github.com/InspectorSpuds/CoffeeReviews.git` if you wish to download htis project locally
 
-# Run: 
-## Testing: 
+# Run:  
   To test functionality locally, just run `npm start` in the frontend, and `node index.js` in the backend
 
 # Functionality:
