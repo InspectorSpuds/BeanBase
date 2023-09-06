@@ -11,10 +11,10 @@ class RequestSender {
     
     
     //test/aws url------------
-    this.url = "http://localhost:4000";
+    //this.url = "http://localhost:4000";
 
     //production url--------
-    //this.url = "http://52.15.100.147"
+    this.url = "http://52.15.100.147:4000"
   }
 
 
