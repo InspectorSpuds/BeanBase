@@ -63,7 +63,7 @@ function Home() {
   return (
     <div>
       <Navbar></Navbar>
-      <h1 id={"greeter"}>Welcome!</h1>
+      <h1 id={"greeter"}>Finding irresistable coffee starts here!</h1>
       <div className={"filter"}>
         <div>Posts</div>
       </div>

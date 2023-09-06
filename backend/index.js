@@ -1,6 +1,10 @@
 //@Filename: index.js
 //@author: Ishan Parikh
-//@Purpoes: routes and handling for expressjs backend
+//@Purpoes: routes and handling for expressjs backend for CoffeeReviews
+//        --Uses:
+//          --Post creation and management
+//          --Logging in, User creation, etc.
+
 const express = require("express");
 const {DBHandler} = require('./lib/db')
 require('dotenv').config();

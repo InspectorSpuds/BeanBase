@@ -56,7 +56,28 @@
 
 
 .LoginActions {
+  padding-top: 10px;
   display: flex;
   gap:10px;
 }
 
+#ConfirmLogin  {
+  border-radius: 5px;
+}
+
+#CreateAccountButton {
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(213, 108, 3);
+  color: black;
+}
+
+#CreateAccountButton:hover {
+  filter: brightness(80%);
+  transition-duration: 100ms;
+}
+
+#CreateAccountButton:active {
+  filter: brightness(60%);
+  transition-duration: 100ms;
+}

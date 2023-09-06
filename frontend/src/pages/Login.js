@@ -83,8 +83,8 @@ function Login() {
               <LoginRow id={2} name={"Password"} setterHook={alterPassword} />
             </div>
             <div className={"LoginActions"}>
-              <input type="submit" value={"Login"} />
-              <input type="button" value={"Create Account"} onClick={redirectToCreate} style={{backgroundColor: "orange"}}/>
+              <input id={"ConfirmLogin"} type="submit" value={"Login"} />
+              <input id={"CreateAccountButton"} type="button" value={"Create Account"} onClick={redirectToCreate} style={{backgroundColor: "orange"}}/>
             </div>
           </form>
         </div>

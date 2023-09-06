@@ -20,8 +20,7 @@ function PostViewer() {
     //get the actual post itself then extract the content and rating
     getter.getPost_withID(id)
       .then(response => {
-        console.log(response)
-        setPost((response.data[0].Content.replace('\\\'','\'').replace('\\\"','\"'))) //replace special characters and new line characters
+        setPost((response.data[0].Content.replace('\\\'','\'').replace('\\\"','\"'))) 
         setTaste([
           {
             subject: "Finish",
@@ -114,7 +113,7 @@ function PostViewer() {
             String(post).split("\n").map(element => {
               return <>
                 <div>{element}</div>
-                <br></br>
+                <br />
               </>
             })
           }

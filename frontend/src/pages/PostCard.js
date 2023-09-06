@@ -1,5 +1,5 @@
 import './PostCard.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React from "react";
 
 //Preconditions: a valid PostInfo object consisting of:
@@ -11,7 +11,6 @@ import React from "react";
 //--deletable, deleteFunction, updatePath: will add update and delete buttons for the post
 //  preconditions: MUST HAVE ALL of the above props in addition and they must be correct
 function PostCard(props) {
-  const CHAR_LIMIT = 200;
   const POST_INFO = props;
   const DATE =   new Date(POST_INFO.date).toLocaleDateString();
   const TITLE =  POST_INFO.title;

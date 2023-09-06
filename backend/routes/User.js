@@ -1,3 +1,7 @@
+//Author: Ishan parikh
+//Purpose: User routes for logging in relating to JWT's 
+
+
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");

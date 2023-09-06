@@ -1,3 +1,7 @@
+//Author: Ishan Parihk
+//Purpose: Singleton class implementation for a mysql statement executor that pools connections
+//Need: fs, mysql2
+
 const fs = require('fs')
 const mysql = require("mysql2")
 
@@ -54,6 +58,7 @@ class DBHandler {
       },
       maxIdle: 100, 
       idleTimeout: 80000,
+      waitForConnections: true,
       enableKeepAlive: true, 
       connectTimeout: 100000,
       multipleStatements: true,

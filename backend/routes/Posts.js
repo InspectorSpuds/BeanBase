@@ -16,18 +16,18 @@ router.post("/create", async (req, res) => {
   }
 })
 
-//router.post("/update", async (req, res) => {
-//  try {
-//    console.log(req.body.Post)
-//    //let result = await global.dbHelper.createEntirePost(req.body.Coffee, req.body.Post, req.body.TasteProfile, req.body.UID);
-//    res.status(200)
-//    res.json("successfully posted")
-//  } catch(error) {
-//    console.log(error.message);
-//    res.status(404)
-//    res.json({message: error.message})
-//  }
-//})
+router.post("/update", async (req, res) => {
+  try {
+    console.log(req.body.Post)
+    //let result = await global.dbHelper.createEntirePost(req.body.Coffee, req.body.Post, req.body.TasteProfile, req.body.UID);
+    res.status(200)
+    res.json("successfully posted")
+  } catch(error) {
+    console.log(error.message);
+    res.status(404)
+    res.json({message: error.message})
+  }
+})
 
 
 //Precondition: pid must be a value and not undefined, NaN, etc. 

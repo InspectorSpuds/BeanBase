@@ -28,9 +28,9 @@ function ManagePosts() {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
 
-  const filterPostByID = (id) => {
-    setPosts(prev => prev.filter(item => item.id !== id))
-  }
+  //removes the selected post by using the build in filter function to get all arr elements except
+  //the selected post with given id
+  const filterPostByID = (id) => setPosts(prev => prev.filter(item => item.id !== id));
 
   //preconditions: id and title of accompanying post must exist and be correct
   const removePost = (id, title) => {
@@ -72,6 +72,7 @@ function ManagePosts() {
       alert("Login info not present or invalid, redirecting to login");
       cookies.remove('session-token');
       navigate('/login');
+      return;
     } 
 
     //validate the user token and redirect back to home page on fail
