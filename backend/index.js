@@ -37,6 +37,11 @@ app.listen(PORT, () => {
   console.log(`CoffeeBlog REST backend: http://localhost:${PORT}`)
 })
 
+app.get("/", async(req, res) => {
+  res.status(200)
+  res.json({message: "this does nothing fella"})
+})
+
 //to use data in body 
 app.use(express.json({
   type: "*/*"
