@@ -136,3 +136,7 @@ CoffeeReviewsDB_old.sql
 
 #ssl certs
 us-east-2-bundle.pem
+
+
+# nginx config files
+default

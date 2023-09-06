@@ -13,7 +13,8 @@ class RequestSender {
     //this.url = "http://localhost:4000";
 
     //production url--------
-    this.url = String(process.env.REACT_APP_BACKEND_HOSTNAME);
+    //this.url = String("process.env.REACT_APP_BACKEND_HOSTNAME"); //unncomment this one when needed
+    this.url = "" //the routes are gonna get proxied by the server
   }
 
 
