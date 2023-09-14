@@ -2,7 +2,7 @@
 A Personal project intended on creating a fullstack blog site for reviewing various coffee beans I come across
 
 # Hosting
-This project is hosted on several aws ec2 instances and can be accessed here:
+This project is hosted on several aws ec2 instances and can be accessed here: 
 
 # Installation:
 ## Dependencies: 
