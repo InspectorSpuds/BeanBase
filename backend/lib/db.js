@@ -21,7 +21,7 @@ class DBHandler {
   #dbConnection
   #dbInitiailized
 
-  //pr`econditions: host (string) is the url of the local db
+  //preconditions: host (string) is the url of the local db
   //process: local testing db construction (don't use in production)
   //constructor(host, user,  password) {
   //  this.#host = host
@@ -82,7 +82,7 @@ class DBHandler {
   async getPost(PID) {
     //create a promise to create the query
     return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`SELECT *  FROM CoffeeReviews. posts p, CoffeeReviews.tasteprofile t, CoffeeReviews.coffee c where p.PID = \'${PID}\' and p.PID = t.PID and p.CID = c.CID`, (err, result, fields) => {
+      this.#dbConnection.query(`SELECT *  FROM CoffeeReviews.posts p, CoffeeReviews.tasteprofile t, CoffeeReviews.coffee c where p.PID = \'${PID}\' and p.PID = t.PID and p.CID = c.CID`, (err, result, fields) => {
         if(err) reject(new DBInitError(err.message));
         resolve(result);
       })
@@ -188,12 +188,19 @@ class DBHandler {
     })
   }
 
-  //async updateEntirePost(Coffee, Post, TasteProfile, UID) {
-  //  
-  //}
+  async deletePost(PID, UID) {
+    return new Promise(async (resolve, reject) => {
+      //check that the user ID matches that of the post
+      try {
+        //Check post exists first
+        const result = await this.getPost(PID);
+        if(result[0].count === 0) reject(new DBInitError("Post does not exist"))
+        else if(result[0][0].UID !== UID) reject(new DBInitError("Error on deletion: not user's post"))
+      } catch(err) {
+        reject(new DBInitError(err.message)); 
+      }
 
-  async deletePost(PID) {
-    return new Promise((resolve, reject) => {
+      //try deleting post
       this.#dbConnection.query(`DELETE FROM CoffeeReviews.posts WHERE PID=\'${PID}\';`, (err, result, fields) => {
         if(err) {
           console.log(err.message);

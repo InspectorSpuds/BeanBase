@@ -41,13 +41,13 @@ router.get("/get/:PID", async (req, res) => {
 
 //Preconditions: pid must be a valid value for a post
 router.delete("/remove/:PID", async (req, res) => {
-  if(req.params.PID === undefined) {
+  //only delete if uid of user given
+  if(req.params.PID === undefined || req.body.UID === undefined) {
     console.log(req.params.PID);
     res.status(404)
     res.json({message: "no post id passed"})
   } else reqWrapper( async () => global.dbHelper.deletePost(req.params.PID), res);
 })
-
 
 //Preconditions: none
 //Process: get partial post details for all posts (to create Post cards in react) 
