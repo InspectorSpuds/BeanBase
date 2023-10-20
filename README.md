@@ -1,4 +1,4 @@
-# CoffeeReviews
+# BeanBase
 A Personal project intended on creating a fullstack blog site for reviewing various coffee beans I come across
 
 # Hosting
