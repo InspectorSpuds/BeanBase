@@ -28,7 +28,6 @@ function getAllPostCards(id=null) {
       sender.getAllPosts()
       .then(response => {
         //refresh posts hook and then populate it
-        alert(response);
         let postCards = []
         for(let index = 0; index < response.data.length; index++) {
           let currentPost = response.data[index]
