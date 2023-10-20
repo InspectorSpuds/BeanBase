@@ -108,7 +108,10 @@ function PostViewer() {
      <div>
       <Navbar/>
       <div className={"Main"}>
-        <div className={"PostHeader"}>
+        <div>
+
+        </div>
+        <div className={"PostHeader"} style={{marginTop: 0}}>
           <h2>Description</h2>
         </div>
         <div>
