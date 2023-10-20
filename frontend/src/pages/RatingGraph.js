@@ -34,7 +34,8 @@ function useWindowDimensions() {
   return windowDimensions;
 }
 
-
+//issues: the chart scaling is a bit weird with sudden shifts between
+//        mobile and web view but that shouldn't be an issue to be honest
 
 function RatingGraph(props) {
   const {DEVICE_WIDTH, DEVICE_HEIGHT} = useWindowDimensions() 
@@ -43,9 +44,9 @@ function RatingGraph(props) {
   return (
     <div id={"Graph"}>
       <RadarChart
-      outerRadius={125}
-      width={300}
-      height={300}
+      outerRadius={Math.min(window.innerWidth - 10, 500) / 3.2}
+      width={Math.min(window.innerWidth - 10, 500)}
+      height={400}
       data={props.data}>
         <PolarGrid gridType={"circle"}/>
         <PolarAngleAxis dataKey="subject" />
