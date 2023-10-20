@@ -1,0 +1,12 @@
+.GraphContainer {
+  padding-bottom: 15px;
+}
+
+.PostHeader {
+  background-color: black;
+  margin-bottom: 15px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+  color: white;
+}

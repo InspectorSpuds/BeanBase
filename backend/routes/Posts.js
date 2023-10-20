@@ -52,7 +52,6 @@ router.delete("/remove/:PID", async (req, res) => {
 //Preconditions: none
 //Process: get partial post details for all posts (to create Post cards in react) 
 router.get("/getAll", async (req, res) => {
-  global.dbHelper.getPosts();
   reqWrapper(async () => global.dbHelper.getPosts(), res);
 })
 

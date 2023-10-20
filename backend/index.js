@@ -48,8 +48,8 @@ app.use(express.json({
 
 //for local testing
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-  //res.header("Access-Control-Allow-Origin", "http://18.119.31.92"); //this is for testing
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // this is for testing
+  //res.header("Access-Control-Allow-Origin", "http://18.119.31.92"); // this is for production
   res.header("Access-Control-Allow-Methods","GET, POST, DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();

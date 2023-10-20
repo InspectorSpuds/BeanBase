@@ -107,7 +107,6 @@ class DBHandler {
     return new Promise((resolve, reject) => {
       this.#dbConnection.query(`SELECT * FROM posts`, (err, result, fields) => {
         if(err) reject(new DBInitError("Error getting post cards => " + err));
-        console.log(result);
         resolve(result);
       })
     })

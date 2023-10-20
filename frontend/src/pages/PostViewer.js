@@ -108,6 +108,9 @@ function PostViewer() {
      <div>
       <Navbar/>
       <div className={"Main"}>
+        <div className={"PostHeader"}>
+          <h2>Description</h2>
+        </div>
         <div>
           {           
             String(post).split("\n").map(element => {
@@ -118,7 +121,12 @@ function PostViewer() {
             })
           }
         </div>
-        <RatingGraph data={taste}/>
+        <div className={"PostHeader"}>
+          <h2>Taste Profile</h2>
+        </div>
+        <div className={"GraphContainer"}>
+          <RatingGraph data={taste}/>
+        </div>
         <Footer/>
       </div>
     </div>
