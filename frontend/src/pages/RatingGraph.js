@@ -14,7 +14,6 @@ import {
 //        mobile and web view but that shouldn't be an issue to be honest
 
 function RatingGraph(props) {
-  const {DEVICE_WIDTH, DEVICE_HEIGHT} = useWindowDimensions() 
   const MAX_CHART_SIZE = 500;
 
   return (
