@@ -10,11 +10,11 @@ class RequestSender {
   constructor() {
     //read info from backendindo.json file
     //test url------------
-    //this.url = "http://localhost:4000";
+    this.url = "http://localhost:4000";
 
     //production url--------
-    //this.url = String("process.env.REACT_APP_BACKEND_HOSTNAME"); //unncomment this one when needed
-    this.url = "" //the routes are gonna get proxied by the server
+    //this.url = String("process.env.REACT_APP_BACKEND_HOSTNAME"); //ONLY USE FOR NON-PROXY service
+    //this.url = "" //the routes are gonna get proxied by the server
   }
 
 
