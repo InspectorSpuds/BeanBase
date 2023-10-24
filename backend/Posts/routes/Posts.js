@@ -55,11 +55,11 @@ router.get("/getAll", async (req, res) => {
   reqWrapper(async () => global.dbHelper.getPosts(), res);
 })
 
-router.get("/getAll/:PID", async (req, res) => {
+router.get("/getAll/:UID", async (req, res) => {
   if(req.params.PID === undefined) {
     res.status(404)
     res.json({message: "no post id passed"})
-  } else reqWrapper( async () => global.dbHelper.getUserPosts(req.params.PID),res); 
+  } else reqWrapper( async () => global.dbHelper.getUserPosts(req.params.UID),res); 
 })
 
 async function reqWrapper(command, res,  errorResponse={status:404, message: "Resource not found"}){

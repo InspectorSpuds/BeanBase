@@ -89,16 +89,6 @@ class DBHandler {
     })
   }
 
-  async getUser(name) {
-    //create a promise to create the query
-    return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`SELECT * from CoffeeReviews.user where Username = \'${name}\';`, (err, result, fields) => {
-        if(err) reject(new DBInitError(err.message));
-        resolve(result);
-      })
-    })
-  }
-
   //preconditions: none
   //process: gets all post info for rendering Post cards
   //postconditions; a promise handle to the mysql query results
@@ -112,9 +102,9 @@ class DBHandler {
     })
   }
 
-  async getUserPosts(PID) {
+  async getUserPosts(UID) {
     return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`SELECT * FROM posts where PID=\'${PID}\'`, (err, result, fields) => {
+      this.#dbConnection.query(`SELECT * FROM posts where UID=\'${UID}\'`, (err, result, fields) => {
         if(err) reject(new DBInitError("Error getting user post cards => " + err));
         resolve(result);
       })
@@ -211,29 +201,7 @@ class DBHandler {
     })
   }
 
-  async createUser(id, Username, password) {
-    return new Promise((resolve, reject) => {
-      this.#dbConnection.query(`insert into CoffeeReviews.user values(\'${id}\',\'${Username}\',\'${password}\');`, (err, result, fields) => {
-        if(err) console.log(err.message)
-        if(err) reject(new DBInitError(err.message))
-        resolve(result)
-      })
-    })
-  }
 
-  async checkUser(Username, password) {
-    try {
-      const result = await new Promise((resolve, reject) => {
-        this.#dbConnection.query(`SELECT COUNT(*) as count from CoffeeReviews.user where Username=\'${Username}\' and password=\'${password}\';`, (err, result, fields) => {
-          if(err) reject(new DBInitError(err.message))
-          resolve(result[0].count > 0)
-        })
-      })
-      return result;
-    } catch(error) {
-      return false;
-    }
-  }
 
 }
 
