@@ -14,8 +14,6 @@ const PORT =  Number(process.env.SERVICE_PORT)
 
 //routes
 const Posts = require('./routes/Posts.js')
-const User = require('./routes/User.js')
-
 
 //create db connection object and try to connect first and see if that works
 global.dbHelper = new DBHandler(process.env.HOST, process.env.ADMIN, process.env.PASSWORD, parseInt(process.env.PORT), process.env.SSL)

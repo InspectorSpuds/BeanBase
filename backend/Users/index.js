@@ -13,7 +13,6 @@ const app = express()
 const PORT =  Number(process.env.SERVICE_PORT)
 
 //routes
-const Posts = require('./routes/Posts.js')
 const User = require('./routes/User.js')
 
 
