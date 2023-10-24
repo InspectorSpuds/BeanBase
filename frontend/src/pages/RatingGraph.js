@@ -16,6 +16,9 @@ import {
 function RatingGraph(props) {
   const MAX_CHART_SIZE = 500;
 
+
+  //picks the max of window width and max chart size to ensure fit in all mobile 
+  //and desktop devices
   return (
     <div id={"Graph"}>
       <RadarChart

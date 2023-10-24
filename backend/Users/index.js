@@ -10,7 +10,7 @@ const {DBHandler} = require('./lib/db')
 require('dotenv').config();
 
 const app = express()
-const PORT =  4000
+const PORT =  Number(process.env.SERVICE_PORT)
 
 //routes
 const Posts = require('./routes/Posts.js')
@@ -57,5 +57,4 @@ app.use(function(req, res, next) {
 
 
 //routes--------
-app.use("/Posts", Posts)
 app.use("/User", User)
