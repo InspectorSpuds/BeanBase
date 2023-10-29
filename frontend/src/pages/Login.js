@@ -12,7 +12,7 @@ function LoginRow(props) {
     <div className="LoginRow">
       <label>{props.name}</label>
       <br></br>
-      <input type="text" onChange={obj => props.setterHook(obj)} />
+      <input type={props.name=="Password" ? "password" : "text"} onChange={obj => props.setterHook(obj)} />
     </div>
   )
 }

@@ -106,6 +106,28 @@ h2 {
   border-bottom: 4px solid rgb(255, 255, 255);
 }
 
+.LoginRow > input[type=password] {
+  transition-duration: 0.1s;
+  box-sizing: border-box;
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: inherit;
+  border-bottom: 2px solid black;
+}
+
+.LoginRow > input[type=password]:focus {
+  transition-duration: 0.1s;
+  color: black;
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: inherit;
+  border-bottom: 4px solid rgb(255, 255, 255);
+}
+
 
 .PostRow > input[type=number] {
   transition-duration: 0.1s;
