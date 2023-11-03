@@ -7,8 +7,14 @@ h2 {
   padding-top: 10px;
 }
 
+.MainContentArea {
+  margin-top: 45px;
+}
+
+
 #greeter {
   background-color: var(--Main-color);
+  overflow-wrap: normal;
   color: white;
   text-align: center;
   width: 100%;

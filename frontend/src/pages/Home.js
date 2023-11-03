@@ -1,5 +1,5 @@
 import './Home.css'
-import Navbar from './Navbar';
+import NavBar from './NavBar';
 import Footer from './Footer'
 import { useEffect, useState } from 'react';
 import PostCard from './PostCard';
@@ -61,19 +61,23 @@ function Home() {
   },[])
 
   return (
-    <div>
-      <Navbar></Navbar>
-      <h1 id={"greeter"}>Finding irresistable coffee starts here!</h1>
-      <div className={"filter"}>
-        <div>Posts</div>
+    <>
+      <NavBar></NavBar>
+      <div className='MainContentArea'>
+        <div id={"greeter"}>
+          <h1>Finding irresistable coffee starts here!</h1>
+        </div>
+        <div className={"filter"}>
+          <div>Posts</div>
+        </div>
+        <div className={"CardFlow"}>
+            {postList.map( postobj => {
+              return <PostCard date={postobj.date} title={postobj.title} filler={postobj.filler} id={postobj.id} deletable={false} />
+            })}
+        </div>
+        <Footer/>
       </div>
-      <div className={"CardFlow"}>
-          {postList.map( postobj => {
-            return <PostCard date={postobj.date} title={postobj.title} filler={postobj.filler} id={postobj.id} deletable={false} />
-          })}
-      </div>
-      <Footer/>
-    </div>
+    </>
 
    
   )

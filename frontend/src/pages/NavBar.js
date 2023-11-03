@@ -1,19 +1,23 @@
-import './Navbar.css'
+import './NavBar.css'
 import { Link, useNavigate} from "react-router-dom";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faPlus, faGear, faRightToBracket} from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faPlus, faGear, faRightToBracket, faMugHot} from '@fortawesome/free-solid-svg-icons'
 import Cookies from 'universal-cookie';
+import useWindowDimensions from '../api/WindowDimensions';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 
 
 
-
-function Navbar() {
+function NavBar() {
   const cookies = new Cookies();
-  let login = null;
   const [token, setToken] = useState(cookies.get("session-token"));
+  const dimensions = useWindowDimensions();
+  const leftNavbarRef = useRef(null);
   const navigate = useNavigate();
+  let login = null;
+
 
 
   //remove cookie and trigger rerender
@@ -35,10 +39,15 @@ function Navbar() {
             )
   }
 
+  //resize navbar items to burger menu if screen width drops below certain threshold
+
+
 
   return (
     <div className={"Navbar"}>
-        <div className={"NavbarLeft"}>
+
+        <div ref={leftNavbarRef} className={"NavbarLeft"}>
+
           <Link to={"/"}>
             <div>
               <FontAwesomeIcon icon={faHouse} /> 
@@ -54,14 +63,20 @@ function Navbar() {
               <FontAwesomeIcon icon={faGear} /> Manage
             </div>
           </Link>
+          <Link to={"/BrewHelper"}>  
+            <div>
+              <FontAwesomeIcon icon={faMugHot} /> Brew Helper
+            </div>
+          </Link>
         </div> 
       <div className={"NavbarRight"}>
         {login}
       </div>
     </div>
   )
+
 }
 
 
 
-export default Navbar; 
+export default NavBar; 

@@ -2,7 +2,7 @@
 //Purpose: page for quick and easy post management
 
 import './ManagePosts.css'
-import Navbar from './Navbar';
+import Navbar from './NavBar';
 import Footer from './Footer'
 import { useEffect, useState } from 'react';
 import RequestSender from '../api/RequestSender';

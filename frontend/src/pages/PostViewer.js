@@ -2,7 +2,7 @@ import './PostViewer.css'
 import { useState, useEffect } from 'react';
 import React from 'react';
 import { useParams } from 'react-router';
-import Navbar from './Navbar';
+import Navbar from './NavBar';
 import Footer from './Footer';
 import RequestSender from '../api/RequestSender';
 import RatingGraph from './RatingGraph';
@@ -11,6 +11,7 @@ import RatingGraph from './RatingGraph';
 function PostViewer() {
   const {id} = useParams();               //the post id extracted from the route
   const [post, setPost] = useState([]);   //actual post content
+  const [title, setTitle] = useState("");
   const [taste, setTaste] = useState([]); //taste rating data
   
   //fetch all the data
@@ -21,6 +22,7 @@ function PostViewer() {
     getter.getPost_withID(id)
       .then(response => {
         setPost((response.data[0].Content.replace('\\\'','\'').replace('\\\"','\"'))) 
+        setTitle(old => response.data[0].Title)
         setTaste([
           {
             subject: "Finish",
@@ -108,8 +110,8 @@ function PostViewer() {
      <div>
       <Navbar/>
       <div className={"Main"}>
-        <div>
-
+        <div className='PostTitle'>
+          <h2>{title}</h2>
         </div>
         <div className={"PostHeader"} style={{marginTop: 0}}>
           <h2>Description</h2>

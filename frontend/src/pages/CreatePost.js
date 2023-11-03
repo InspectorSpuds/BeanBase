@@ -1,5 +1,5 @@
 import './CreatePost.css'
-import Navbar from './Navbar';
+import Navbar from './NavBar';
 import Footer from './Footer'
 import { useEffect, useState } from 'react';
 import RequestSender from '../api/RequestSender';

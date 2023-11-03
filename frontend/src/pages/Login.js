@@ -1,18 +1,20 @@
 import './Login.css'
 import { useRef, useState, useEffect} from "react";
-import {useNavigate, redirect} from "react-router-dom";
-import Navbar from "./Navbar"
+import {useNavigate} from "react-router-dom";
+import Navbar from "./NavBar"
 import Footer from "./Footer"
 import React from "react";
 import RequestSender from '../api/RequestSender';
 import Cookies from 'universal-cookie';
 
 function LoginRow(props) {
+  const LOGIN_FIELD_NAME = props.name;
+
   return (
     <div className="LoginRow">
-      <label>{props.name}</label>
+      <label>{LOGIN_FIELD_NAME}</label>
       <br></br>
-      <input type={props.name=="Password" ? "password" : "text"} onChange={obj => props.setterHook(obj)} />
+      <input type={LOGIN_FIELD_NAME === "Password" ? "password" : "text"} onChange={obj => props.setterHook(obj)} />
     </div>
   )
 }

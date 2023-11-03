@@ -43,6 +43,10 @@ const router = createBrowserRouter([
     path: "/ManagePosts/",
     element: <ManagePosts></ManagePosts>,
   },
+  {
+    path: "/BrewHelper",
+    element: null,
+  },
   //{
   //  path: "/UpdatePost/:id",
   //  element: <p> 404- not found</p>,

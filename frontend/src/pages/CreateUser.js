@@ -1,7 +1,7 @@
 import './CreateUser.css'
 import { useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import Navbar from "./Navbar"
+import Navbar from "./NavBar"
 import Footer from "./Footer"
 import React from "react";
 import RequestSender from '../api/RequestSender';
