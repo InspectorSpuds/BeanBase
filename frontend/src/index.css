@@ -24,10 +24,10 @@ h1, h2, h3 {
 
 :root {
   --bar-height: 45px;
-  --Main-color: #1463F3; 
+  --Main-color:  #3E2723; 
   --Secondary-color: rgb(0, 0, 0);
-  --Third-color:rgb(67, 210, 253);
-  --Main-text-color: white;
+  --Third-color: #76D7C4;
+  --Main-text-color: #ffffff;
 }
 
 input[type=text] {
